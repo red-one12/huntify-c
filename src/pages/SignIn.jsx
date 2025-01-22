@@ -1,9 +1,19 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const SignIn = () => {
+
+  const {loginUser, googleLogin} = useContext(AuthContext);
+
   const handleGoogleSignIn = () => {
-    // Add Google sign-in logic here
-    console.log("Google Sign-In clicked");
+    googleLogin()
+    .then(result => {
+      console.log(result.user);
+    })
+    .catch(error => {
+      console.log(error.message);
+    })
   };
 
   const handleLogin = (event) => {
@@ -11,8 +21,13 @@ const SignIn = () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    // Add email/password login logic here
-    console.log("Email:", email, "Password:", password);
+    loginUser(email, password)
+    .then(result => {
+      console.log(result.user);
+    })
+    .catch(error => {
+      console.log(error.message);
+    })
   };
 
   return (

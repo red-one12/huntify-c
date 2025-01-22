@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const SignUp = () => {
 
-  const {createNewUser} = useContext(AuthContext);
+  const {createNewUser, setUser} = useContext(AuthContext);
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -15,7 +16,13 @@ const SignUp = () => {
 
     createNewUser(email, password)
     .then(result => {
-      console.log(result.user);
+      const user = result.user;
+      return updateProfile(user, {
+        displayName: name,
+        photoURL: photoURL
+      }).then(() => {
+        setUser(user);
+      })
     })
     .catch(error => {
       console.log(error.message);
