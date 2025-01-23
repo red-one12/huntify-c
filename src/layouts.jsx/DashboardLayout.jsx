@@ -8,7 +8,7 @@ const DashboardLayout = () => {
         <DashboardNav></DashboardNav>
       </div>
 
-      <div className="right-side w-4/5 p-8 min-h-screen text-black">
+      <div className="right-side w-4/5 p-8 min-h-screen text-black px-8 py-16">
         <Outlet></Outlet>
       </div>
     </div>
