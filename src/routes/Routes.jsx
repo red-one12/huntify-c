@@ -5,6 +5,7 @@ import Products from "../pages/Products";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import ProductDetails from "../pages/ProductDetails";
+import DashboardLayout from "../layouts.jsx/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,15 @@ const router = createBrowserRouter([
     path: "/signUp",
     element: <SignUp></SignUp>,
   },
+  {
+    path: '/dashboard',
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        
+      }
+    ]
+  }
 ]);
 
 export default router;

@@ -91,7 +91,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink to="/dashboard" className="menu-item">
-                  Dashboard
+                  Dashboard 
                 </NavLink>
               </li>
               <li>

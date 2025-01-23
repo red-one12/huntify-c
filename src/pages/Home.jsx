@@ -9,11 +9,14 @@ const Home = () => {
       <Banner></Banner>
 
 
-
+      <div className='max-w-7xl mx-auto'>
       <FeaturedProducts></FeaturedProducts>
+      </div>
 
 
+      <div className='max-w-7xl mx-auto'>
       <TrendingProducts></TrendingProducts>
+      </div>
     </div>
   );
 };
