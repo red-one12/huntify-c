@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from '../components/Banner';
 import FeaturedProducts from '../components/FeaturedProducts';
+import TrendingProducts from '../components/TrendingProducts';
 
 const Home = () => {
   return (
@@ -10,6 +11,9 @@ const Home = () => {
 
 
       <FeaturedProducts></FeaturedProducts>
+
+
+      <TrendingProducts></TrendingProducts>
     </div>
   );
 };

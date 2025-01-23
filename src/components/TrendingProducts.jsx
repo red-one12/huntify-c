@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { SlLike } from 'react-icons/sl';
 import { AuthContext } from '../provider/AuthProvider';
 
-const FeaturedProducts = () => {
+const TrendingProducts = () => {
   const [products, setProducts] = useState([]);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -14,13 +14,12 @@ const FeaturedProducts = () => {
       .get('http://localhost:5000/products')
       .then((res) => {
         const sortedProducts = res.data
-          .filter((product) => product.isFeatured) // Only featured products
-          .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)) // Sort by timestamp
-          .slice(0, 4); // Limit to 4 products
+          .sort((a, b) => (b.votes || 0) - (a.votes || 0)) // Sort by vote count (highest to lowest)
+          .slice(0, 6); // Limit to 6 products
         setProducts(sortedProducts);
       })
       .catch((error) => {
-        console.error('Error fetching featured products:', error);
+        console.error('Error fetching trending products:', error);
       });
   }, []);
 
@@ -48,9 +47,9 @@ const FeaturedProducts = () => {
   };
 
   return (
-    <div className="featured-products my-10 px-5">
-      <h2 className="text-3xl font-bold text-center mb-8">Featured Products</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="trending-products my-10 px-5">
+      <h2 className="text-3xl font-bold text-center mb-8">Trending Products</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product, index) => (
           <div
             key={index}
@@ -66,7 +65,7 @@ const FeaturedProducts = () => {
 
             <div className="p-4">
               <Link
-                to={`/productDetails/${product.name}`}
+                to={`/product-details/${product.name}`}
                 className="text-lg font-semibold hover:underline"
               >
                 {product.name}
@@ -101,8 +100,16 @@ const FeaturedProducts = () => {
           </div>
         ))}
       </div>
+      <div className="mt-8 text-center">
+        <button
+          className="btn btn-secondary px-6 py-2 text-lg"
+          onClick={() => navigate('/products')} // Redirect to PRODUCTS page
+        >
+          Show All Products
+        </button>
+      </div>
     </div>
   );
 };
 
-export default FeaturedProducts;
+export default TrendingProducts;
