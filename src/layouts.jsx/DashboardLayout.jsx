@@ -1,15 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import DashboardNav from "../components/DashboardNav";
 
 const DashboardLayout = () => {
   return (
-    <div className="flex">
-      <div className="left-side bg-blue-400 w-1/5 min-h-screen p-8">
-        <p>hello</p>
+    <div className="flex text-white">
+      <div className="left-side bg-[#340070] w-1/5 min-h-screen px-8 py-16">
+        <DashboardNav></DashboardNav>
       </div>
 
-      <div className="right-side bg-blue-700 w-4/5 p-8 min-h-screen">
+      <div className="right-side w-4/5 p-8 min-h-screen text-black">
         <Outlet></Outlet>
-        <p>hello</p>
       </div>
     </div>
   );
