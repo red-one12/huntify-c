@@ -36,11 +36,7 @@ const UserAddProduct = () => {
       name: productName,
       image: productImage,
       description: description,
-      owner: {
-        name: user.displayName,
-        email: user.email,
-        photo: user.photoURL,
-      },
+      ownerMail: user.email,
       tags: tags.map((tag) => tag.text), // Convert tags array into plain text
       externalLink,
       timestamp: new Date(), // Save timestamp
