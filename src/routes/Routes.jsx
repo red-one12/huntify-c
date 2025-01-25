@@ -11,6 +11,8 @@ import UserMyProfile from "../pages/UserMyProfile";
 import UserAddProduct from "../pages/UserAddProduct";
 import UserMyProducts from "../pages/UserMyProducts";
 import UserUpdateProduct from "../pages/UserUpdateProduct";
+import ReviewQueue from "../pages/ReviewQueue";
+import ReportedContents from "../pages/ReportedContents";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +61,14 @@ const router = createBrowserRouter([
         path: '/dashboard/myProducts',
         element: <UserMyProducts></UserMyProducts>
       },
+      {
+        path: '/dashboard/reviewQueue',
+        element: <ReviewQueue></ReviewQueue>
+      },
+      {
+        path: '/dashboard/reportedContents',
+        element: <ReportedContents></ReportedContents>
+      }
 
     ]
   },
