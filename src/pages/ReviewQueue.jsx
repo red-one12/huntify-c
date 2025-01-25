@@ -24,8 +24,15 @@ const ReviewQueue = () => {
   // Handlers for product actions
   const handleMakeFeatured = (productId) => {
     axios
-      .post(`http://localhost:5000/products/featured/${productId}`)
+      .post(`http://localhost:5000/products/feature/${productId}`)
       .then(() => {
+        setProducts((prevProducts) =>
+          prevProducts.map((product) =>
+            product._id === productId
+              ? { ...product, isFeatured: true }
+              : product
+          )
+        );
         alert("Product marked as featured!");
       })
       .catch((err) => console.error("Error marking product as featured:", err));
@@ -88,8 +95,9 @@ const ReviewQueue = () => {
                   <button
                     className="btn btn-sm btn-success"
                     onClick={() => handleMakeFeatured(product._id)}
+                    disabled={product.isFeatured} // Disable if already featured
                   >
-                    Make Featured
+                    {product.isFeatured ? "Featured" : "Make Featured"}
                   </button>
                   <button
                     className={`btn btn-sm ${
