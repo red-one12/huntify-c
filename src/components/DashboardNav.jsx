@@ -35,7 +35,7 @@ const DashboardNav = () => {
       {userRole === "admin" && (
         <div className="mt-8 flex flex-col gap-10">
           <h4 className="font-bold text-xl">Admin Panel</h4>
-          <Link to="/dashboard/manageUsers">Manage Users</Link>
+          <Link to="/dashboard/showAllUser">Manage Users</Link>
           <Link to="/dashboard/siteSettings">Site Settings</Link>
         </div>
       )}
