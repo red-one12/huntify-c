@@ -10,6 +10,7 @@ import Dashboard from "../pages/Dashboard";
 import UserMyProfile from "../pages/UserMyProfile";
 import UserAddProduct from "../pages/UserAddProduct";
 import UserMyProducts from "../pages/UserMyProducts";
+import UserUpdateProduct from "../pages/UserUpdateProduct";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       },
 
     ]
+  },
+  {
+    path: '/updateProduct/:id',
+    element: <UserUpdateProduct></UserUpdateProduct>
   }
 ]);
 

@@ -10,21 +10,23 @@ const UserMyProducts = () => {
 
   // Fetch user's products from the server
   useEffect(() => {
-    const fetchUserProducts = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/products/${user.email}`);
-        setProducts(response.data); // Set the retrieved products to state
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
+    if (user && user.email) { // Check if user and email exist
+      const fetchUserProducts = async () => {
+        try {
+          const response = await axios.get(`http://localhost:5000/products/${user.email}`);
+          setProducts(response.data); // Set the retrieved products to state
+        } catch (error) {
+          console.error("Error fetching products:", error);
+        }
+      };
 
-    fetchUserProducts();
-  }, [user.email]);
+      fetchUserProducts();
+    }
+  }, [user]);
 
   // Redirect to update page
   const handleUpdate = (productId) => {
-    navigate(`/update-product/${productId}`);
+    navigate(`/updateProduct/${productId}`);
   };
 
   // Delete a product
@@ -43,12 +45,22 @@ const UserMyProducts = () => {
     }
   };
 
+  if (!user) {
+    return (
+      <div className="text-center mt-10">
+        <h2 className="text-xl font-bold">Loading...</h2>
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-4xl mx-auto bg-white shadow-md rounded p-6 mt-10">
       <h2 className="text-2xl font-bold mb-4 text-center">My Products</h2>
       <table className="min-w-full table-auto">
         <thead>
           <tr>
+            <th className="px-4 py-2 border">Product Image</th>
             <th className="px-4 py-2 border">Product Name</th>
             <th className="px-4 py-2 border">Votes</th>
             <th className="px-4 py-2 border">Status</th>
@@ -63,6 +75,7 @@ const UserMyProducts = () => {
           ) : (
             products.map((product) => (
               <tr key={product._id}>
+                <td className="px-4 py-2 border"><img src={product.image} className="w-40" alt="" /></td>
                 <td className="px-4 py-2 border">{product.name}</td>
                 <td className="px-4 py-2 border">{product.votes || 0}</td>
                 <td className="px-4 py-2 border">{product.status || "Pending"}</td>

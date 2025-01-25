@@ -15,6 +15,15 @@ const UserAddProduct = () => {
   const [tags, setTags] = useState([]);
   const [externalLink, setExternalLink] = useState("");
 
+  // Ensure user object exists
+  if (!user) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
+  }
+
   // Handlers for ReactTags
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
