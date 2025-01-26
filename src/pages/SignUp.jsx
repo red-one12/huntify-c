@@ -25,7 +25,6 @@ const SignUp = () => {
           const newUser = {
             email,
             isSubscribed: false, // Default value
-            position: "user", // Default role
             name,
           };
   

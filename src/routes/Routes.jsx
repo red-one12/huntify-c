@@ -14,6 +14,7 @@ import UserUpdateProduct from "../pages/UserUpdateProduct";
 import ReviewQueue from "../pages/ReviewQueue";
 import ReportedContents from "../pages/ReportedContents";
 import ShowAllUser from "../pages/ShowAllUser";
+import SiteSetting from "../pages/SiteSetting";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/showAllUser',
         element: <ShowAllUser></ShowAllUser>
+      },
+      {
+        path: '/dashboard/siteSetting',
+        element: <SiteSetting></SiteSetting>
       }
 
     ]

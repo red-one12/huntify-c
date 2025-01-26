@@ -65,7 +65,7 @@ const TrendingProducts = () => {
 
             <div className="p-4">
               <Link
-                to={`/product-details/${product.name}`}
+                to={`/productDetails/${product._id}`}
                 className="text-lg font-semibold hover:underline"
               >
                 {product.name}

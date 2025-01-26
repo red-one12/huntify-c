@@ -71,7 +71,7 @@ const Products = () => {
 
             <div className="p-4">
               <Link
-                to={`/productDetails/${product.name}`}
+                to={`/productDetails/${product._id}`}
                 className="text-lg font-semibold hover:underline"
               >
                 {product.name}
