@@ -37,6 +37,7 @@ const DashboardNav = () => {
           <h4 className="font-bold text-xl">Admin Panel</h4>
           <Link to="/dashboard/showAllUser">Manage Users</Link>
           <Link to="/dashboard/siteSetting">Site Settings</Link>
+          <Link to="/dashboard/manageCoupon">Coupons</Link>
         </div>
       )}
       {userRole === "moderator" && (

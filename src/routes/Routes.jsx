@@ -15,11 +15,14 @@ import ReviewQueue from "../pages/ReviewQueue";
 import ReportedContents from "../pages/ReportedContents";
 import ShowAllUser from "../pages/ShowAllUser";
 import SiteSetting from "../pages/SiteSetting";
+import ErrorPage from "../pages/ErrorPage";
+import ManageCoupon from "../pages/ManageCoupon";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -46,6 +49,7 @@ const router = createBrowserRouter([
   {
     path: '/dashboard',
     element: <DashboardLayout></DashboardLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/dashboard/dashboard',
@@ -78,6 +82,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/siteSetting',
         element: <SiteSetting></SiteSetting>
+      },
+      {
+        path: '/dashboard/manageCoupon',
+        element: <ManageCoupon></ManageCoupon>
       }
 
     ]

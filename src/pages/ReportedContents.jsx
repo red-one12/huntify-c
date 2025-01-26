@@ -20,7 +20,7 @@ const ReportedContents = () => {
 
   // Handle "View" button click to navigate to product details
   const handleViewClick = (productId) => {
-    navigate(`/viewDetails/${productId}`);
+    navigate(`/productDetails/${productId}`);
   };
 
   return (
