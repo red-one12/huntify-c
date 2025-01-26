@@ -13,23 +13,45 @@ const SignUp = () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
     const photoURL = event.target.photoURL.value;
-
+  
     createNewUser(email, password)
-    .then(result => {
-      const user = result.user;
-      return updateProfile(user, {
-        displayName: name,
-        photoURL: photoURL
-      }).then(() => {
-        setUser(user);
+      .then((result) => {
+        const user = result.user;
+        return updateProfile(user, {
+          displayName: name,
+          photoURL: photoURL,
+        }).then(() => {
+          // Add user to the database
+          const newUser = {
+            email,
+            isSubscribed: false, // Default value
+            position: "user", // Default role
+            name,
+          };
+  
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId || data.upsertedId) {
+                console.log("User added to the database:", data);
+              } else {
+                console.error("Failed to add user to the database");
+              }
+            })
+            .catch((error) => console.error("Error posting user:", error));
+        });
       })
-    })
-    .catch(error => {
-      console.log(error.message);
-    })
-
-
+      .catch((error) => {
+        console.error("Error signing up:", error.message);
+      });
   };
+  
 
   
 
