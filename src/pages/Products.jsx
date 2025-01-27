@@ -43,7 +43,8 @@ const Products = () => {
     }
   };
 
-  // Pagination logic
+  
+
   const totalPages = Math.ceil(products.length / productsPerPage);
   const startIndex = (currentPage - 1) * productsPerPage;
   const currentProducts = products.slice(startIndex, startIndex + productsPerPage);
@@ -109,7 +110,9 @@ const Products = () => {
         ))}
       </div>
 
-      {/* Pagination Controls */}
+      
+
+      
       <div className="join flex justify-center items-center mt-10">
         {Array.from({ length: totalPages }, (_, i) => (
           <button

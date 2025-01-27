@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const UserMyProducts = () => {
   const { user } = useContext(AuthContext); // Get logged-in user info
@@ -31,18 +32,22 @@ const UserMyProducts = () => {
 
   // Delete a product
   const handleDelete = async (productId) => {
-    const confirmation = window.confirm("Are you sure you want to delete this product?");
-    if (confirmation) {
+    
+    
       try {
         await axios.delete(`http://localhost:5000/products/${productId}`);
         // Remove the deleted product from the state
         setProducts(products.filter((product) => product._id !== productId));
-        alert("Product deleted successfully!");
+        Swal.fire({
+                title: "Product Deleted!",
+                icon: "error",
+                draggable: true
+              });
       } catch (error) {
         console.error("Error deleting product:", error);
         alert("Failed to delete product. Please try again.");
       }
-    }
+    
   };
 
   if (!user) {

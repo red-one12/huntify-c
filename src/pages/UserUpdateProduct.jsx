@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UserUpdateProduct = () => {
   const { id } = useParams(); // Get product ID from URL params
@@ -49,7 +50,11 @@ const UserUpdateProduct = () => {
     axios
       .put(`http://localhost:5000/product/${id}`, formData)
       .then(() => {
-        alert("Product updated successfully!");
+        Swal.fire({
+                title: "Product Updated!",
+                icon: "success",
+                draggable: true
+              });
         navigate("/dashboard/myProducts"); // Redirect to product list
       })
       .catch((err) => {

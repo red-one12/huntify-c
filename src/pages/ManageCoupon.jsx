@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ManageCoupon = () => {
   const [coupons, setCoupons] = useState([]);
@@ -25,21 +26,32 @@ const ManageCoupon = () => {
   };
 
   // Handle coupon addition
-  const handleAddCoupon = (e) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:5000/coupons", formData)
-      .then((res) => {
-        setCoupons([...coupons, res.data]);
-        setFormData({
-          couponCode: "",
-          expiryDate: "",
-          description: "",
-          discountAmount: "",
-        });
-      })
-      .catch((err) => console.error("Error adding coupon:", err));
-  };
+  // Handle coupon addition
+const handleAddCoupon = (e) => {
+  e.preventDefault();
+  axios
+    .post("http://localhost:5000/coupons", formData)
+    .then(() => {
+      Swal.fire({
+        title: "Coupon Added!",
+        icon: "success",
+        draggable: true,
+      });
+      // Fetch the updated coupons list
+      return axios.get("http://localhost:5000/coupons");
+    })
+    .then((res) => {
+      setCoupons(res.data); // Update state with the latest list
+      setFormData({
+        couponCode: "",
+        expiryDate: "",
+        description: "",
+        discountAmount: "",
+      });
+    })
+    .catch((err) => console.error("Error adding coupon:", err));
+};
+
 
   // Handle coupon deletion
   const handleDeleteCoupon = (id) => {
@@ -53,14 +65,14 @@ const ManageCoupon = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>Manage Coupons</h1>
+      <h1 className="text-3xl font-bold">Manage Coupons</h1>
 
       {/* Add Coupon Form */}
       <form onSubmit={handleAddCoupon} style={{ marginBottom: "20px" }}>
-        <h2>Add a New Coupon</h2>
+        <h2 className="text-lg font-bold">Add a New Coupon</h2>
         <div style={{ marginBottom: "10px" }}>
           <label>Coupon Code:</label>
-          <input
+          <input className="border"
             type="text"
             name="couponCode"
             value={formData.couponCode}
@@ -72,6 +84,7 @@ const ManageCoupon = () => {
         <div style={{ marginBottom: "10px" }}>
           <label>Expiry Date:</label>
           <input
+          className="border"
             type="date"
             name="expiryDate"
             value={formData.expiryDate}
@@ -83,6 +96,7 @@ const ManageCoupon = () => {
         <div style={{ marginBottom: "10px" }}>
           <label>Description:</label>
           <textarea
+          className="border"
             name="description"
             value={formData.description}
             onChange={handleChange}
@@ -93,6 +107,7 @@ const ManageCoupon = () => {
         <div style={{ marginBottom: "10px" }}>
           <label>Discount Amount:</label>
           <input
+          className="border"
             type="number"
             name="discountAmount"
             value={formData.discountAmount}

@@ -3,6 +3,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { WithContext as ReactTags } from "react-tag-input";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const UserAddProduct = () => {
   const { user } = useContext(AuthContext);
@@ -53,7 +54,11 @@ const UserAddProduct = () => {
 
     try {
       await axios.post("http://localhost:5000/products", formData);
-      alert("Product added successfully!");
+      Swal.fire({
+        title: "Product Added!",
+        icon: "success",
+        draggable: true
+      });
       navigate("/dashboard/myProducts"); // Redirect to My Products page
     } catch (error) {
       console.error("Error adding product:", error);
