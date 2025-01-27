@@ -8,19 +8,22 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(6); // Number of products per page
+  const [searchTerm, setSearchTerm] = useState(""); // For search functionality
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  // Fetch products based on search term and pagination
   useEffect(() => {
     axios
-      .get("http://localhost:5000/products")
+      .get(`http://localhost:5000/products?search=${searchTerm}`)
       .then((res) => {
         setProducts(res.data);
+        setCurrentPage(1); // Reset to page 1 when search term changes
       })
       .catch((error) => {
-        console.error("Error fetching featured products:", error);
+        console.error("Error fetching products:", error);
       });
-  }, []);
+  }, [searchTerm]);
 
   const handleUpvote = (product) => {
     if (!user) {
@@ -43,8 +46,6 @@ const Products = () => {
     }
   };
 
-  
-
   const totalPages = Math.ceil(products.length / productsPerPage);
   const startIndex = (currentPage - 1) * productsPerPage;
   const currentProducts = products.slice(startIndex, startIndex + productsPerPage);
@@ -55,6 +56,17 @@ const Products = () => {
 
   return (
     <div className="featured-products my-10 max-w-7xl mx-auto">
+      {/* Search Bar */}
+      <div className="mb-6 flex justify-center">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search products by tags..."
+          className="input input-bordered w-full max-w-md"
+        />
+      </div>
+
       <h2 className="text-3xl font-bold text-center mb-8">All Products</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {currentProducts.map((product, index) => (
@@ -110,9 +122,7 @@ const Products = () => {
         ))}
       </div>
 
-      
-
-      
+      {/* Pagination */}
       <div className="join flex justify-center items-center mt-10">
         {Array.from({ length: totalPages }, (_, i) => (
           <button

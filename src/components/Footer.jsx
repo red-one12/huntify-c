@@ -1,21 +1,21 @@
 import React from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+
 
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-8">
       <div className="container max-w-7xl mx-auto px-6">
-        {/* Footer Logo and Name */}
-        <div className="flex justify-between items-center mb-8">
+      
+        <div className="mb-8">
           <div className="flex items-center">
-            <h2 className="text-2xl font-bold">TechHaven</h2>
+            <h2 className="text-2xl font-bold text-yellow-500">Huntify</h2>
           </div>
         </div>
 
-        {/* Footer Links */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-          {/* Contact Info */}
+   
+        <div className="md:flex md:justify-between gap-10 mb-8">
+  
           <div>
             <h4 className="font-semibold mb-4">Contact Us</h4>
             <p>Email: huntify@gmail.com</p>
@@ -23,24 +23,6 @@ const Footer = () => {
             <p>Address:Goshairhat, Shariatpur</p>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
-            <ul>
-              <li>
-                <Link to="/about" className="hover:underline">About Us</Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:underline">Services</Link>
-              </li>
-              <li>
-                <Link to="/contact" className="hover:underline">Contact</Link>
-              </li>
-              <li>
-                <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
-              </li>
-            </ul>
-          </div>
 
           {/* Social Media */}
           <div>
@@ -64,8 +46,8 @@ const Footer = () => {
           {/* Address */}
           <div>
             <h4 className="font-semibold mb-4">Our Office</h4>
-            <p>123 Tech St, Silicon Valley, CA</p>
-            <p>United States</p>
+            <p>Goshairhat</p>
+            <p>Shariatpur</p>
           </div>
         </div>
 

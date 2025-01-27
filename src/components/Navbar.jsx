@@ -98,7 +98,7 @@ const Navbar = () => {
                 <span className="font-semibold">{user.displayName}</span>
               </li>
               <li>
-                <NavLink to="/dashboard" className="menu-item">
+                <NavLink to="/dashboard/dashboard" className="menu-item">
                   Dashboard 
                 </NavLink>
               </li>

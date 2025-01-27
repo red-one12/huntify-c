@@ -79,7 +79,11 @@ const ProductDetails = () => {
         `http://localhost:5000/product/${productId}`
       );
       if (response.status === 200) {
-        alert("Product deleted successfully!");
+        Swal.fire({
+          title: "Product Deleted!",
+          icon: "error",
+          draggable: true
+        });
         setProduct(null);
       }
     } catch (error) {
@@ -98,7 +102,7 @@ const ProductDetails = () => {
       });
       return;
     }
-
+  
     const newReview = {
       productId: id,
       userName: user?.displayName,
@@ -106,7 +110,7 @@ const ProductDetails = () => {
       description: reviewData.description,
       rating: parseInt(reviewData.rating),
     };
-
+  
     try {
       const response = await axios.post("http://localhost:5000/reviews", newReview);
       if (response.status === 201) {
@@ -115,7 +119,7 @@ const ProductDetails = () => {
           text: "Thank you for your feedback!",
           icon: "success",
         });
-        setReviews((prev) => [...prev, newReview]); // Update the reviews list dynamically
+        setAllReviews((prev) => [...prev, newReview]); // Update the reviews list dynamically
         setReviewData({ description: "", rating: "" }); // Reset the form
       }
     } catch (error) {
@@ -127,6 +131,7 @@ const ProductDetails = () => {
       });
     }
   };
+  
 
   useEffect(() => {
     axios.get(`http://localhost:5000/review/${id}`)
