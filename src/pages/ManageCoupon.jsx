@@ -14,7 +14,7 @@ const ManageCoupon = () => {
   // Fetch coupons from the server
   useEffect(() => {
     axios
-      .get("http://localhost:5000/coupons")
+      .get("https://huntify-server.vercel.app/coupons")
       .then((res) => setCoupons(res.data))
       .catch((err) => console.error("Error fetching coupons:", err));
   }, []);
@@ -27,36 +27,35 @@ const ManageCoupon = () => {
 
   // Handle coupon addition
   // Handle coupon addition
-const handleAddCoupon = (e) => {
-  e.preventDefault();
-  axios
-    .post("http://localhost:5000/coupons", formData)
-    .then(() => {
-      Swal.fire({
-        title: "Coupon Added!",
-        icon: "success",
-        draggable: true,
-      });
-      // Fetch the updated coupons list
-      return axios.get("http://localhost:5000/coupons");
-    })
-    .then((res) => {
-      setCoupons(res.data); // Update state with the latest list
-      setFormData({
-        couponCode: "",
-        expiryDate: "",
-        description: "",
-        discountAmount: "",
-      });
-    })
-    .catch((err) => console.error("Error adding coupon:", err));
-};
-
+  const handleAddCoupon = (e) => {
+    e.preventDefault();
+    axios
+      .post("https://huntify-server.vercel.app/coupons", formData)
+      .then(() => {
+        Swal.fire({
+          title: "Coupon Added!",
+          icon: "success",
+          draggable: true,
+        });
+        // Fetch the updated coupons list
+        return axios.get("https://huntify-server.vercel.app/coupons");
+      })
+      .then((res) => {
+        setCoupons(res.data); // Update state with the latest list
+        setFormData({
+          couponCode: "",
+          expiryDate: "",
+          description: "",
+          discountAmount: "",
+        });
+      })
+      .catch((err) => console.error("Error adding coupon:", err));
+  };
 
   // Handle coupon deletion
   const handleDeleteCoupon = (id) => {
     axios
-      .delete(`http://localhost:5000/coupons/${id}`)
+      .delete(`https://huntify-server.vercel.app/coupons/${id}`)
       .then(() => {
         setCoupons(coupons.filter((coupon) => coupon._id !== id));
       })
@@ -72,7 +71,8 @@ const handleAddCoupon = (e) => {
         <h2 className="text-lg font-bold">Add a New Coupon</h2>
         <div style={{ marginBottom: "10px" }}>
           <label>Coupon Code:</label>
-          <input className="border"
+          <input
+            className="border"
             type="text"
             name="couponCode"
             value={formData.couponCode}
@@ -84,7 +84,7 @@ const handleAddCoupon = (e) => {
         <div style={{ marginBottom: "10px" }}>
           <label>Expiry Date:</label>
           <input
-          className="border"
+            className="border"
             type="date"
             name="expiryDate"
             value={formData.expiryDate}
@@ -96,7 +96,7 @@ const handleAddCoupon = (e) => {
         <div style={{ marginBottom: "10px" }}>
           <label>Description:</label>
           <textarea
-          className="border"
+            className="border"
             name="description"
             value={formData.description}
             onChange={handleChange}
@@ -107,7 +107,7 @@ const handleAddCoupon = (e) => {
         <div style={{ marginBottom: "10px" }}>
           <label>Discount Amount:</label>
           <input
-          className="border"
+            className="border"
             type="number"
             name="discountAmount"
             value={formData.discountAmount}
@@ -116,7 +116,16 @@ const handleAddCoupon = (e) => {
             style={{ marginLeft: "10px" }}
           />
         </div>
-        <button type="submit" style={{ padding: "10px 20px", background: "#4CAF50", color: "#fff", border: "none", borderRadius: "5px" }}>
+        <button
+          type="submit"
+          style={{
+            padding: "10px 20px",
+            background: "#4CAF50",
+            color: "#fff",
+            border: "none",
+            borderRadius: "5px",
+          }}
+        >
           Add Coupon
         </button>
       </form>
@@ -126,28 +135,52 @@ const handleAddCoupon = (e) => {
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr style={{ backgroundColor: "#f2f2f2" }}>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Coupon Code</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Expiry Date</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Description</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Discount Amount</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Actions</th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+                Coupon Code
+              </th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+                Expiry Date
+              </th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+                Description
+              </th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+                Discount Amount
+              </th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
             {coupons.map((coupon) => (
               <tr key={coupon._id}>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{coupon.couponCode}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{coupon.expiryDate}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{coupon.description}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{coupon.discountAmount}</td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {coupon.couponCode}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {coupon.expiryDate}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {coupon.description}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {coupon.discountAmount}
+                </td>
                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>
                   <button
                     onClick={() => handleDeleteCoupon(coupon._id)}
-                    style={{ padding: "5px 10px", background: "#FF6347", color: "#fff", border: "none", borderRadius: "5px", marginRight: "5px" }}
+                    style={{
+                      padding: "5px 10px",
+                      background: "#FF6347",
+                      color: "#fff",
+                      border: "none",
+                      borderRadius: "5px",
+                      marginRight: "5px",
+                    }}
                   >
                     Delete
                   </button>
-                  
                 </td>
               </tr>
             ))}

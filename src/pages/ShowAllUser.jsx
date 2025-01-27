@@ -7,7 +7,7 @@ const ShowAllUser = () => {
   // Fetch all users
   useEffect(() => {
     axios
-      .get("http://localhost:5000/users") // Replace with your actual API endpoint
+      .get("https://huntify-server.vercel.app/users") // Replace with your actual API endpoint
       .then((res) => setHuntifyUsers(res.data))
       .catch((err) => console.error("Error fetching users:", err));
   }, []);
@@ -15,7 +15,7 @@ const ShowAllUser = () => {
   // Make a user a moderator
   const handleMakeModerator = (userId) => {
     axios
-      .patch(`http://localhost:5000/users/${userId}/moderator`) // Replace with your actual API endpoint
+      .patch(`https://huntify-server.vercel.app/users/${userId}/moderator`) // Replace with your actual API endpoint
       .then(() => {
         setHuntifyUsers((prevUsers) =>
           prevUsers.map((user) =>
@@ -30,7 +30,7 @@ const ShowAllUser = () => {
   // Make a user an admin
   const handleMakeAdmin = (userId) => {
     axios
-      .patch(`http://localhost:5000/users/${userId}/admin`) // Replace with your actual API endpoint
+      .patch(`https://huntify-server.vercel.app/users/${userId}/admin`) // Replace with your actual API endpoint
       .then(() => {
         setHuntifyUsers((prevUsers) =>
           prevUsers.map((user) =>
@@ -74,7 +74,9 @@ const ShowAllUser = () => {
                       disabled={user.role === "Moderator"}
                       onClick={() => handleMakeModerator(user._id)}
                     >
-                      {user.role === "Moderator" ? "Moderator" : "Make Moderator"}
+                      {user.role === "Moderator"
+                        ? "Moderator"
+                        : "Make Moderator"}
                     </button>
                     <button
                       className={`btn btn-sm ${

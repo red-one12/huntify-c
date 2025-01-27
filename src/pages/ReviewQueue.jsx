@@ -8,7 +8,7 @@ const ReviewQueue = () => {
   // Fetching products data from the backend
   useEffect(() => {
     axios
-      .get("http://localhost:5000/products")
+      .get("https://huntify-server.vercel.app/products")
       .then((res) => {
         // Sort products so Pending comes first
         const sortedProducts = res.data.sort((a, b) => {
@@ -24,7 +24,7 @@ const ReviewQueue = () => {
   // Handlers for product actions
   const handleMakeFeatured = (productId) => {
     axios
-      .post(`http://localhost:5000/products/feature/${productId}`)
+      .post(`https://huntify-server.vercel.app/products/feature/${productId}`)
       .then(() => {
         setProducts((prevProducts) =>
           prevProducts.map((product) =>
@@ -40,7 +40,7 @@ const ReviewQueue = () => {
 
   const handleAccept = (productId) => {
     axios
-      .post(`http://localhost:5000/products/accept/${productId}`)
+      .post(`https://huntify-server.vercel.app/products/accept/${productId}`)
       .then(() => {
         setProducts((prevProducts) =>
           prevProducts.map((product) =>
@@ -55,7 +55,7 @@ const ReviewQueue = () => {
 
   const handleReject = (productId) => {
     axios
-      .post(`http://localhost:5000/products/reject/${productId}`)
+      .post(`https://huntify-server.vercel.app/products/reject/${productId}`)
       .then(() => {
         setProducts((prevProducts) =>
           prevProducts.map((product) =>

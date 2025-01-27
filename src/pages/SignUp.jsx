@@ -5,8 +5,7 @@ import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
-
-  const {createNewUser, setUser} = useContext(AuthContext);
+  const { createNewUser, setUser } = useContext(AuthContext);
   const navigateToHome = useNavigate();
 
   const handleSignUp = (event) => {
@@ -15,10 +14,9 @@ const SignUp = () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
     const photoURL = event.target.photoURL.value;
-  
+
     createNewUser(email, password)
       .then((result) => {
-
         const user = result.user;
         return updateProfile(user, {
           displayName: name,
@@ -30,8 +28,8 @@ const SignUp = () => {
             isSubscribed: false, // Default value
             name,
           };
-  
-          fetch("http://localhost:5000/users", {
+
+          fetch("https://huntify-server.vercel.app/users", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -44,9 +42,9 @@ const SignUp = () => {
                 Swal.fire({
                   title: "Successfully Signed UP!",
                   icon: "success",
-                  draggable: true
+                  draggable: true,
                 });
-                navigateToHome('/')
+                navigateToHome("/");
                 // console.log("User added to the database:", data);
               } else {
                 console.error("Failed to add user to the database");
@@ -59,17 +57,19 @@ const SignUp = () => {
         console.error("Error signing up:", error.message);
       });
   };
-  
-
-  
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
-        <h2 className="text-center text-3xl font-bold text-gray-800">Sign Up</h2>
+        <h2 className="text-center text-3xl font-bold text-gray-800">
+          Sign Up
+        </h2>
         <form className="mt-6" onSubmit={handleSignUp}>
           <div className="mb-4">
-            <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="name"
+              className="mb-2 block text-sm font-medium text-gray-600"
+            >
               Name
             </label>
             <input
@@ -82,7 +82,10 @@ const SignUp = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="email"
+              className="mb-2 block text-sm font-medium text-gray-600"
+            >
               Email Address
             </label>
             <input
@@ -95,7 +98,10 @@ const SignUp = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="mb-2 block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="password"
+              className="mb-2 block text-sm font-medium text-gray-600"
+            >
               Password
             </label>
             <input
@@ -108,7 +114,10 @@ const SignUp = () => {
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="photo" className="mb-2 block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="photo"
+              className="mb-2 block text-sm font-medium text-gray-600"
+            >
               Photo URL or Upload
             </label>
             <input
@@ -129,7 +138,10 @@ const SignUp = () => {
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{" "}
-            <Link to="/signIn" className="font-medium text-blue-500 hover:underline">
+            <Link
+              to="/signIn"
+              className="font-medium text-blue-500 hover:underline"
+            >
               Sign In here
             </Link>
           </p>

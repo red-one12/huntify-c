@@ -17,7 +17,7 @@ const UserUpdateProduct = () => {
   useEffect(() => {
     // Fetch product data by ID
     axios
-      .get(`http://localhost:5000/product/${id}`)
+      .get(`https://huntify-server.vercel.app/product/${id}`)
       .then((res) => {
         const { name, votes, status, image } = res.data[0]; // Adjust based on API response
         setFormData({
@@ -48,13 +48,13 @@ const UserUpdateProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:5000/product/${id}`, formData)
+      .put(`https://huntify-server.vercel.app/product/${id}`, formData)
       .then(() => {
         Swal.fire({
-                title: "Product Updated!",
-                icon: "success",
-                draggable: true
-              });
+          title: "Product Updated!",
+          icon: "success",
+          draggable: true,
+        });
         navigate("/dashboard/myProducts"); // Redirect to product list
       })
       .catch((err) => {
@@ -88,7 +88,10 @@ const UserUpdateProduct = () => {
       <h2 className="text-2xl font-bold mb-4 text-center">Update Product</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-700"
+          >
             Product Name
           </label>
           <input
@@ -102,7 +105,10 @@ const UserUpdateProduct = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-700"
+          >
             Product Image
           </label>
           <input
@@ -116,7 +122,10 @@ const UserUpdateProduct = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="votes" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="votes"
+            className="block text-sm font-medium text-gray-700"
+          >
             Votes
           </label>
           <input
@@ -129,7 +138,10 @@ const UserUpdateProduct = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="status" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="status"
+            className="block text-sm font-medium text-gray-700"
+          >
             Status
           </label>
           <select

@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import { SlLike } from 'react-icons/sl';
-import { AuthContext } from '../provider/AuthProvider';
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { SlLike } from "react-icons/sl";
+import { AuthContext } from "../provider/AuthProvider";
 
 const TrendingProducts = () => {
   const [products, setProducts] = useState([]);
@@ -11,7 +11,7 @@ const TrendingProducts = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/products')
+      .get("https://huntify-server.vercel.app/products")
       .then((res) => {
         const sortedProducts = res.data
           .sort((a, b) => (b.votes || 0) - (a.votes || 0)) // Sort by vote count (highest to lowest)
@@ -19,20 +19,23 @@ const TrendingProducts = () => {
         setProducts(sortedProducts);
       })
       .catch((error) => {
-        console.error('Error fetching trending products:', error);
+        console.error("Error fetching trending products:", error);
       });
   }, []);
 
   const handleUpvote = (product) => {
     if (!user) {
       // Redirect to login if not logged in
-      navigate('/login');
+      navigate("/login");
     } else if (user.email !== product.ownerMail) {
       // Prevent owner from voting
       axios
-        .post(`http://localhost:5000/products/vote/${product.name}`, {
-          userEmail: user.email, // Send user email to track votes
-        })
+        .post(
+          `https://huntify-server.vercel.app/products/vote/${product.name}`,
+          {
+            userEmail: user.email, // Send user email to track votes
+          }
+        )
         .then(() => {
           setProducts((prevProducts) =>
             prevProducts.map((p) =>
@@ -41,7 +44,7 @@ const TrendingProducts = () => {
           );
         })
         .catch((error) => {
-          console.error('Error upvoting product:', error);
+          console.error("Error upvoting product:", error);
         });
     }
   };
@@ -85,7 +88,9 @@ const TrendingProducts = () => {
               <div className="mt-4">
                 <button
                   className={`btn ${
-                    user && user.email === product.ownerMail ? 'btn-disabled' : 'btn-primary'
+                    user && user.email === product.ownerMail
+                      ? "btn-disabled"
+                      : "btn-primary"
                   }`}
                   disabled={user && user.email === product.ownerMail} // Disable for product owner
                   onClick={() => handleUpvote(product)}
@@ -103,7 +108,7 @@ const TrendingProducts = () => {
       <div className="mt-8 text-center">
         <button
           className="btn btn-secondary px-6 py-2 text-lg"
-          onClick={() => navigate('/products')} // Redirect to PRODUCTS page
+          onClick={() => navigate("/products")} // Redirect to PRODUCTS page
         >
           Show All Products
         </button>

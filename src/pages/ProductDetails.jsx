@@ -10,19 +10,17 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [reviews, setReviews] = useState([]);
-  
+
   const [reviewData, setReviewData] = useState({
     description: "",
     rating: "",
   });
   const [allReviews, setAllReviews] = useState([]);
 
-
-
   // Fetch product details
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/product/${id}`)
+      .get(`https://huntify-server.vercel.app/product/${id}`)
       .then((res) => setProduct(res.data[0]))
       .catch((err) => console.log(err));
   }, [id]);
@@ -30,7 +28,7 @@ const ProductDetails = () => {
   // Fetch reviews for the product
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/product/${id}/reviews`)
+      .get(`https://huntify-server.vercel.app/product/${id}/reviews`)
       .then((res) => setReviews(res.data))
       .catch((err) => console.log(err));
   }, [id]);
@@ -38,7 +36,7 @@ const ProductDetails = () => {
   // Fetch all users
   useEffect(() => {
     axios
-      .get("http://localhost:5000/users")
+      .get("https://huntify-server.vercel.app/users")
       .then((res) => setAllUser(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -46,7 +44,7 @@ const ProductDetails = () => {
   const handleReport = async (productId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/products/report/${productId}`,
+        `https://huntify-server.vercel.app/products/report/${productId}`,
         {
           method: "PATCH",
           headers: {
@@ -76,13 +74,13 @@ const ProductDetails = () => {
   const handleDelete = async (productId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/product/${productId}`
+        `https://huntify-server.vercel.app/product/${productId}`
       );
       if (response.status === 200) {
         Swal.fire({
           title: "Product Deleted!",
           icon: "error",
-          draggable: true
+          draggable: true,
         });
         setProduct(null);
       }
@@ -102,7 +100,7 @@ const ProductDetails = () => {
       });
       return;
     }
-  
+
     const newReview = {
       productId: id,
       userName: user?.displayName,
@@ -110,9 +108,12 @@ const ProductDetails = () => {
       description: reviewData.description,
       rating: parseInt(reviewData.rating),
     };
-  
+
     try {
-      const response = await axios.post("http://localhost:5000/reviews", newReview);
+      const response = await axios.post(
+        "https://huntify-server.vercel.app/reviews",
+        newReview
+      );
       if (response.status === 201) {
         Swal.fire({
           title: "Review Submitted",
@@ -131,20 +132,18 @@ const ProductDetails = () => {
       });
     }
   };
-  
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/review/${id}`)
-    .then(res => setAllReviews(res.data))
-    .catch(err => {
-      console.log(err);
-    })
+    axios
+      .get(`https://huntify-server.vercel.app/review/${id}`)
+      .then((res) => setAllReviews(res.data))
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
   // console.log(allReviews);
-  
-  const currentUser = allUser.find((u) => u.email === user?.email);
 
- 
+  const currentUser = allUser.find((u) => u.email === user?.email);
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
@@ -221,11 +220,16 @@ const ProductDetails = () => {
                 />
               </div>
               <div>
-                <label className="block font-medium mb-1">Review Description</label>
+                <label className="block font-medium mb-1">
+                  Review Description
+                </label>
                 <textarea
                   value={reviewData.description}
                   onChange={(e) =>
-                    setReviewData((prev) => ({ ...prev, description: e.target.value }))
+                    setReviewData((prev) => ({
+                      ...prev,
+                      description: e.target.value,
+                    }))
                   }
                   className="w-full px-4 py-2 border rounded-lg"
                   placeholder="Write your review here..."
@@ -237,7 +241,10 @@ const ProductDetails = () => {
                   type="number"
                   value={reviewData.rating}
                   onChange={(e) =>
-                    setReviewData((prev) => ({ ...prev, rating: e.target.value }))
+                    setReviewData((prev) => ({
+                      ...prev,
+                      rating: e.target.value,
+                    }))
                   }
                   className="w-full px-4 py-2 border rounded-lg"
                   placeholder="Rate out of 5"
@@ -264,11 +271,17 @@ const ProductDetails = () => {
                     key={review._id}
                     className="carousel-item bg-white border rounded-lg shadow-md p-4 w-[250px] flex flex-col gap-5 justify-center items-center"
                   >
-                    <img src={review.userImage} className="w-20 h-20 rounded-full object-cover" alt="" />
+                    <img
+                      src={review.userImage}
+                      className="w-20 h-20 rounded-full object-cover"
+                      alt=""
+                    />
                     <p className="text-gray-700">
                       <strong>{review.userName}</strong>
                     </p>
-                    <p className="text-gray-500 text-center">{review.description}</p>
+                    <p className="text-gray-500 text-center">
+                      {review.description}
+                    </p>
                     <p className="text-gray-400 text-sm">
                       <strong>Rating:</strong> {review.rating} / 5
                     </p>
@@ -276,12 +289,16 @@ const ProductDetails = () => {
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500">No reviews available for this product.</p>
+              <p className="text-gray-500">
+                No reviews available for this product.
+              </p>
             )}
           </div>
         </>
       ) : (
-        <p className="text-center text-gray-500">Product not found or deleted.</p>
+        <p className="text-center text-gray-500">
+          Product not found or deleted.
+        </p>
       )}
     </div>
   );

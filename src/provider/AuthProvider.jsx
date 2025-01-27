@@ -3,6 +3,7 @@ import React, { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.init";
 import { GoogleAuthProvider } from "firebase/auth";
 
+
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
@@ -10,6 +11,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const provider = new GoogleAuthProvider();
+  const [jwtUser, setJWTUser] = useState([]);
 
 
   const createNewUser = (email, password) => {
@@ -38,6 +40,12 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
+      if(currentUser){
+        
+      }
+      else{
+
+      }
       setLoading(false);
     })
     return() => {

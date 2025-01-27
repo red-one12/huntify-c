@@ -8,7 +8,7 @@ const ReportedContents = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/products')
+      .get("https://huntify-server.vercel.app/products")
       .then((res) => setProducts(res.data))
       .catch((err) => {
         console.log(err);
@@ -16,7 +16,9 @@ const ReportedContents = () => {
   }, []);
 
   // Filter products to only show those that are reported
-  const reportedProducts = products.filter(product => product.isReported === true);
+  const reportedProducts = products.filter(
+    (product) => product.isReported === true
+  );
 
   // Handle "View" button click to navigate to product details
   const handleViewClick = (productId) => {

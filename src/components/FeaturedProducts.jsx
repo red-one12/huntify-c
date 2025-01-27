@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import { SlLike } from 'react-icons/sl';
-import { AuthContext } from '../provider/AuthProvider';
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { SlLike } from "react-icons/sl";
+import { AuthContext } from "../provider/AuthProvider";
 
 const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);
@@ -11,7 +11,7 @@ const FeaturedProducts = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/products')
+      .get("https://huntify-server.vercel.app/products")
       .then((res) => {
         const sortedProducts = res.data
           .filter((product) => product.isFeatured) // Only featured products
@@ -20,20 +20,23 @@ const FeaturedProducts = () => {
         setProducts(sortedProducts);
       })
       .catch((error) => {
-        console.error('Error fetching featured products:', error);
+        console.error("Error fetching featured products:", error);
       });
   }, []);
 
   const handleUpvote = (product) => {
     if (!user) {
       // Redirect to login if not logged in
-      navigate('/login');
+      navigate("/login");
     } else if (user.email !== product.ownerMail) {
       // Prevent owner from voting
       axios
-        .post(`http://localhost:5000/products/vote/${product.name}`, {
-          userEmail: user.email, // Send user email to track votes
-        })
+        .post(
+          `https://huntify-server.vercel.app/products/vote/${product.name}`,
+          {
+            userEmail: user.email, // Send user email to track votes
+          }
+        )
         .then(() => {
           setProducts((prevProducts) =>
             prevProducts.map((p) =>
@@ -42,7 +45,7 @@ const FeaturedProducts = () => {
           );
         })
         .catch((error) => {
-          console.error('Error upvoting product:', error);
+          console.error("Error upvoting product:", error);
         });
     }
   };
@@ -86,7 +89,9 @@ const FeaturedProducts = () => {
               <div className="mt-4">
                 <button
                   className={`btn ${
-                    user && user.email === product.ownerMail ? 'btn-disabled' : 'btn-primary'
+                    user && user.email === product.ownerMail
+                      ? "btn-disabled"
+                      : "btn-primary"
                   }`}
                   disabled={user && user.email === product.ownerMail} // Disable for product owner
                   onClick={() => handleUpvote(product)}

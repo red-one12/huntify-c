@@ -11,10 +11,13 @@ const UserMyProducts = () => {
 
   // Fetch user's products from the server
   useEffect(() => {
-    if (user && user.email) { // Check if user and email exist
+    if (user && user.email) {
+      // Check if user and email exist
       const fetchUserProducts = async () => {
         try {
-          const response = await axios.get(`http://localhost:5000/products/${user.email}`);
+          const response = await axios.get(
+            `https://huntify-server.vercel.app/products/${user.email}`
+          );
           setProducts(response.data); // Set the retrieved products to state
         } catch (error) {
           console.error("Error fetching products:", error);
@@ -32,22 +35,21 @@ const UserMyProducts = () => {
 
   // Delete a product
   const handleDelete = async (productId) => {
-    
-    
-      try {
-        await axios.delete(`http://localhost:5000/products/${productId}`);
-        // Remove the deleted product from the state
-        setProducts(products.filter((product) => product._id !== productId));
-        Swal.fire({
-                title: "Product Deleted!",
-                icon: "error",
-                draggable: true
-              });
-      } catch (error) {
-        console.error("Error deleting product:", error);
-        alert("Failed to delete product. Please try again.");
-      }
-    
+    try {
+      await axios.delete(
+        `https://huntify-server.vercel.app/products/${productId}`
+      );
+      // Remove the deleted product from the state
+      setProducts(products.filter((product) => product._id !== productId));
+      Swal.fire({
+        title: "Product Deleted!",
+        icon: "error",
+        draggable: true,
+      });
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      alert("Failed to delete product. Please try again.");
+    }
   };
 
   if (!user) {
@@ -75,15 +77,21 @@ const UserMyProducts = () => {
         <tbody>
           {products.length === 0 ? (
             <tr>
-              <td colSpan="4" className="text-center py-4">No products found</td>
+              <td colSpan="4" className="text-center py-4">
+                No products found
+              </td>
             </tr>
           ) : (
             products.map((product) => (
               <tr key={product._id}>
-                <td className="px-4 py-2 border"><img src={product.image} className="w-40" alt="" /></td>
+                <td className="px-4 py-2 border">
+                  <img src={product.image} className="w-40" alt="" />
+                </td>
                 <td className="px-4 py-2 border">{product.name}</td>
                 <td className="px-4 py-2 border">{product.votes || 0}</td>
-                <td className="px-4 py-2 border">{product.status || "Pending"}</td>
+                <td className="px-4 py-2 border">
+                  {product.status || "Pending"}
+                </td>
                 <td className="px-4 py-2 border">
                   <button
                     onClick={() => handleUpdate(product._id)}

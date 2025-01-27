@@ -53,11 +53,11 @@ const UserAddProduct = () => {
     };
 
     try {
-      await axios.post("http://localhost:5000/products", formData);
+      await axios.post("https://huntify-server.vercel.app/products", formData);
       Swal.fire({
         title: "Product Added!",
         icon: "success",
-        draggable: true
+        draggable: true,
       });
       navigate("/dashboard/myProducts"); // Redirect to My Products page
     } catch (error) {

@@ -7,7 +7,7 @@ const CouponsCarousel = () => {
   // Fetch coupons from the server
   useEffect(() => {
     axios
-      .get("http://localhost:5000/coupons")
+      .get("https://huntify-server.vercel.app/coupons")
       .then((res) => setCoupons(res.data))
       .catch((err) => {
         console.log(err);
@@ -29,18 +29,19 @@ const CouponsCarousel = () => {
             className="carousel-item relative flex flex-col items-center bg-white border rounded-lg shadow-xl p-4 w-64"
           >
             <div className="text-center absolute bottom-20">
-            <h2 className="text-2xl font-semibold text-green-600 text-center mb-2">
-              {coupon.couponCode}
-            </h2>
-            <p className="text-sm text-gray-600 mb-1">
-              <strong>Discount:</strong> {coupon.discountAmount}%
-            </p>
-            <p className="text-sm text-gray-600 mb-1">
-              <strong>Expires on:</strong> {new Date(coupon.expiryDate).toLocaleDateString()}
-            </p>
-            <p className="text-sm text-gray-600 mb-4 text-center">
-              {coupon.description}
-            </p>
+              <h2 className="text-2xl font-semibold text-green-600 text-center mb-2">
+                {coupon.couponCode}
+              </h2>
+              <p className="text-sm text-gray-600 mb-1">
+                <strong>Discount:</strong> {coupon.discountAmount}%
+              </p>
+              <p className="text-sm text-gray-600 mb-1">
+                <strong>Expires on:</strong>{" "}
+                {new Date(coupon.expiryDate).toLocaleDateString()}
+              </p>
+              <p className="text-sm text-gray-600 mb-4 text-center">
+                {coupon.description}
+              </p>
             </div>
             <img
               src="https://i.ibb.co.com/X5mtY2H/Black-Minimalist-Coming-Soon-Poster.png"

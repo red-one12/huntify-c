@@ -15,7 +15,7 @@ const Products = () => {
   // Fetch products based on search term and pagination
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/products?search=${searchTerm}`)
+      .get(`https://huntify-server.vercel.app/products?search=${searchTerm}`)
       .then((res) => {
         setProducts(res.data);
         setCurrentPage(1); // Reset to page 1 when search term changes
@@ -30,9 +30,12 @@ const Products = () => {
       navigate("/login");
     } else if (user.email !== product.ownerMail) {
       axios
-        .post(`http://localhost:5000/products/vote/${product.name}`, {
-          userEmail: user.email,
-        })
+        .post(
+          `https://huntify-server.vercel.app/products/vote/${product.name}`,
+          {
+            userEmail: user.email,
+          }
+        )
         .then(() => {
           setProducts((prevProducts) =>
             prevProducts.map((p) =>
@@ -48,7 +51,10 @@ const Products = () => {
 
   const totalPages = Math.ceil(products.length / productsPerPage);
   const startIndex = (currentPage - 1) * productsPerPage;
-  const currentProducts = products.slice(startIndex, startIndex + productsPerPage);
+  const currentProducts = products.slice(
+    startIndex,
+    startIndex + productsPerPage
+  );
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);

@@ -15,8 +15,12 @@ const Statistics = () => {
     const fetchData = async () => {
       try {
         // Replace these URLs with your actual API endpoints
-        const productsResponse = await axios.get("http://localhost:5000/products");
-        const usersResponse = await axios.get("http://localhost:5000/users");
+        const productsResponse = await axios.get(
+          "https://huntify-server.vercel.app/products"
+        );
+        const usersResponse = await axios.get(
+          "https://huntify-server.vercel.app/users"
+        );
 
         const totalProducts = productsResponse.data.length;
         const acceptedProducts = productsResponse.data.filter(
@@ -27,7 +31,8 @@ const Statistics = () => {
         ).length;
 
         const totalReviews = productsResponse.data.reduce(
-          (acc, product) => acc + (product.reviews ? product.reviews.length : 0),
+          (acc, product) =>
+            acc + (product.reviews ? product.reviews.length : 0),
           0
         );
 
@@ -52,7 +57,9 @@ const Statistics = () => {
     <div className="p-6">
       <h2 className="text-xl font-semibold mb-4">Admin Statistics</h2>
       <div className="max-w-lg mx-auto">
-        {stats.totalProducts > 0 || stats.totalUsers > 0 || stats.totalReviews > 0 ? (
+        {stats.totalProducts > 0 ||
+        stats.totalUsers > 0 ||
+        stats.totalReviews > 0 ? (
           <>
             <PieChart
               data={[
@@ -95,7 +102,6 @@ const Statistics = () => {
 
             {/* Segment Section */}
             <div className="mt-6 grid grid-cols-1 gap-4 text-sm text-gray-800">
-              
               <div className="flex justify-between items-center border-b pb-2">
                 <span className="font-semibold">Total Products:</span>
                 <span className="text-blue-500 font-semibold">
@@ -117,7 +123,9 @@ const Statistics = () => {
             </div>
           </>
         ) : (
-          <p className="text-center text-gray-500">No data available to display</p>
+          <p className="text-center text-gray-500">
+            No data available to display
+          </p>
         )}
       </div>
     </div>

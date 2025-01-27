@@ -4,21 +4,19 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const DashboardNav = () => {
-  const { user } = useContext(AuthContext); 
-  const [allUser, setAllUser] = useState([]); 
-  const [userRole, setUserRole] = useState(null); 
+  const { user } = useContext(AuthContext);
+  const [allUser, setAllUser] = useState([]);
+  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
-   
     axios
-      .get("http://localhost:5000/users")
+      .get("https://huntify-server.vercel.app/users")
       .then((res) => {
         setAllUser(res.data);
 
-       
         const loggedInUser = res.data.find((u) => u.email === user?.email);
         if (loggedInUser) {
-          setUserRole(loggedInUser.position); 
+          setUserRole(loggedInUser.position);
         }
       })
       .catch((err) => {
