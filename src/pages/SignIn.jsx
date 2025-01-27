@@ -1,14 +1,22 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
 
   const {loginUser, googleLogin} = useContext(AuthContext);
+  const navigateToHome = useNavigate();
 
   const handleGoogleSignIn = () => {
     googleLogin()
     .then(result => {
+      Swal.fire({
+                        title: "Successfully Signed IN!",
+                        icon: "success",
+                        draggable: true
+                      });
+                      navigateToHome('/');
       console.log(result.user);
     })
     .catch(error => {
@@ -23,6 +31,12 @@ const SignIn = () => {
 
     loginUser(email, password)
     .then(result => {
+      Swal.fire({
+                        title: "Successfully Signed IN!",
+                        icon: "success",
+                        draggable: true
+                      });
+                      navigateToHome('/');
       console.log(result.user);
     })
     .catch(error => {

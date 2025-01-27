@@ -1,11 +1,13 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
 
   const {createNewUser, setUser} = useContext(AuthContext);
+  const navigateToHome = useNavigate();
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -16,6 +18,7 @@ const SignUp = () => {
   
     createNewUser(email, password)
       .then((result) => {
+
         const user = result.user;
         return updateProfile(user, {
           displayName: name,
@@ -38,7 +41,13 @@ const SignUp = () => {
             .then((res) => res.json())
             .then((data) => {
               if (data.insertedId || data.upsertedId) {
-                console.log("User added to the database:", data);
+                Swal.fire({
+                  title: "Successfully Signed UP!",
+                  icon: "success",
+                  draggable: true
+                });
+                navigateToHome('/')
+                // console.log("User added to the database:", data);
               } else {
                 console.error("Failed to add user to the database");
               }

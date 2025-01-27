@@ -17,6 +17,7 @@ import ShowAllUser from "../pages/ShowAllUser";
 import SiteSetting from "../pages/SiteSetting";
 import ErrorPage from "../pages/ErrorPage";
 import ManageCoupon from "../pages/ManageCoupon";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/productDetails/:id",
-        element: <ProductDetails></ProductDetails>,
+        element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
       },
     ],
   },
@@ -53,39 +54,39 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/dashboard/dashboard',
-        element: <Dashboard></Dashboard>
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
       },
       {
         path: '/dashboard/myProfile',
-        element: <UserMyProfile></UserMyProfile>
+        element: <PrivateRoute><UserMyProfile></UserMyProfile></PrivateRoute>
       },
       {
         path: '/dashboard/addProduct',
-        element: <UserAddProduct></UserAddProduct>
+        element: <PrivateRoute><UserAddProduct></UserAddProduct></PrivateRoute>
       },
       {
         path: '/dashboard/myProducts',
-        element: <UserMyProducts></UserMyProducts>
+        element: <PrivateRoute><UserMyProducts></UserMyProducts></PrivateRoute>
       },
       {
         path: '/dashboard/reviewQueue',
-        element: <ReviewQueue></ReviewQueue>
+        element: <PrivateRoute><ReviewQueue></ReviewQueue></PrivateRoute>
       },
       {
         path: '/dashboard/reportedContents',
-        element: <ReportedContents></ReportedContents>
+        element: <PrivateRoute><ReportedContents></ReportedContents></PrivateRoute>
       },
       {
         path: '/dashboard/showAllUser',
-        element: <ShowAllUser></ShowAllUser>
+        element: <PrivateRoute><ShowAllUser></ShowAllUser></PrivateRoute>
       },
       {
         path: '/dashboard/siteSetting',
-        element: <SiteSetting></SiteSetting>
+        element: <PrivateRoute><SiteSetting></SiteSetting></PrivateRoute>
       },
       {
         path: '/dashboard/manageCoupon',
-        element: <ManageCoupon></ManageCoupon>
+        element: <PrivateRoute><ManageCoupon></ManageCoupon></PrivateRoute>
       }
 
     ]
