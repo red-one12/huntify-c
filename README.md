@@ -1,8 +1,12 @@
 # Huntify 🚀
 
+
+
+![image alt](https://github.com/red-one12/huntify-c/blob/4d33dfe4f6e6939a5539f99f2dffb1830e365fda/Screenshot%20(7).png)
+
+
 Huntify is a platform for discovering, sharing, and upvoting tech products like web apps, AI tools, and games. Users can submit products, review them, and upgrade with a membership. Moderators manage approvals, while admins handle users and site activities. Secure authentication and payment integration ensure a smooth experience.
 
-![image alt](https://i.ibb.co/RGnDYc4/Screenshot-7.png)
 
 🔗 **Live Demo**: [Huntify](https://huntify-375e2.web.app/)
 
