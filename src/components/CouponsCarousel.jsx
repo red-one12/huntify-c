@@ -19,7 +19,7 @@ const CouponsCarousel = () => {
       <h1 className="text-5xl font-bold text-center">
         GET YOUR
         <br />
-        FAV <span className="text-green-500">COUPONS</span> HERE...
+        FAV <span className="text-blue-600">COUPONS</span> HERE...
       </h1>
 
       <div className="carousel carousel-center w-1/2 rounded-box p-4 space-x-4">

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { SlLike } from "react-icons/sl";
 import { AuthContext } from "../provider/AuthProvider";
+import { TbListDetails } from "react-icons/tb";
 
 const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);
@@ -57,7 +58,7 @@ const FeaturedProducts = () => {
         {products.map((product, index) => (
           <div
             key={index}
-            className="card bg-base-100 shadow-lg rounded-lg overflow-hidden"
+            className="card flex flex-col justify-between bg-base-100 shadow-lg rounded-lg overflow-hidden"
           >
             <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
               <img
@@ -86,7 +87,7 @@ const FeaturedProducts = () => {
                 ))}
               </div>
 
-              <div className="mt-4">
+              <div className="mt-4 flex justify-between">
                 <button
                   className={`btn ${
                     user && user.email === product.ownerMail
@@ -100,6 +101,15 @@ const FeaturedProducts = () => {
                     <SlLike />
                   </span>
                   {product.votes || 0}
+                </button>
+                <button className="btn bg-green-300">
+                <Link
+                to={`/productDetails/${product._id}`}
+                className="flex justify-center items-center gap-2 text-sm font-semibold"
+              >
+                <TbListDetails />
+                Details
+              </Link>
                 </button>
               </div>
             </div>

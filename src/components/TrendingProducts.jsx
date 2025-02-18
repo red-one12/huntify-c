@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { SlLike } from "react-icons/sl";
 import { AuthContext } from "../provider/AuthProvider";
+import { TbListDetails } from "react-icons/tb";
+import { IoIosArrowDroprightCircle } from "react-icons/io";
 
 const TrendingProducts = () => {
   const [products, setProducts] = useState([]);
@@ -85,7 +87,7 @@ const TrendingProducts = () => {
                 ))}
               </div>
 
-              <div className="mt-4">
+              <div className="mt-4 flex justify-between">
                 <button
                   className={`btn ${
                     user && user.email === product.ownerMail
@@ -100,17 +102,28 @@ const TrendingProducts = () => {
                   </span>
                   {product.votes || 0}
                 </button>
+                <button className="btn bg-green-300">
+                  <Link
+                    to={`/productDetails/${product._id}`}
+                    className="flex justify-center items-center gap-2 text-sm font-semibold"
+                  >
+                    <TbListDetails />
+                    Details
+                  </Link>
+                </button>
               </div>
             </div>
           </div>
         ))}
       </div>
-      <div className="mt-8 text-center">
+      <div className="mt-8 text-center flex justify-end">
         <button
-          className="btn btn-secondary px-6 py-2 text-lg"
-          onClick={() => navigate("/products")} // Redirect to PRODUCTS page
+          className="text-lg underline flex justify-center items-center gap-2 hover:text-blue-600"
+          onClick={() => navigate("/products")}
         >
           Show All Products
+          <IoIosArrowDroprightCircle className="text-2xl" />
+
         </button>
       </div>
     </div>

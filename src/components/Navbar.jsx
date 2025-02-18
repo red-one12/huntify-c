@@ -101,10 +101,10 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <span className="font-semibold">{user.displayName}</span>
+                <span className="font-semibold text-black">{user.displayName}</span>
               </li>
               <li>
-                <NavLink to="/dashboard/dashboard" className="menu-item">
+                <NavLink to="/dashboard/dashboard" className="menu-item text-black">
                   Dashboard 
                 </NavLink>
               </li>
