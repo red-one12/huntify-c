@@ -18,6 +18,7 @@ import SiteSetting from "../pages/SiteSetting";
 import ErrorPage from "../pages/ErrorPage";
 import ManageCoupon from "../pages/ManageCoupon";
 import PrivateRoute from "./PrivateRoute";
+import HelpDesk from "../pages/HelpDesk";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <Products></Products>,
+      },
+      {
+        path: "/helpDesk",
+        element: <HelpDesk></HelpDesk>
       },
       {
         path: "/productDetails/:id",

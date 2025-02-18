@@ -27,7 +27,7 @@ const Products = () => {
 
   const handleUpvote = (product) => {
     if (!user) {
-      navigate("/login");
+      navigate("/signin");
     } else if (user.email !== product.ownerMail) {
       axios
         .post(

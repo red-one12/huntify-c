@@ -26,7 +26,7 @@ const TrendingProducts = () => {
   const handleUpvote = (product) => {
     if (!user) {
       // Redirect to login if not logged in
-      navigate("/login");
+      navigate("/signin");
     } else if (user.email !== product.ownerMail) {
       // Prevent owner from voting
       axios

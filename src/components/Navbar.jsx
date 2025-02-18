@@ -22,7 +22,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar border-b-2 bg-base-100 max-w-7xl mx-auto">
+    <div className="navbar max-w-7xl mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -51,10 +51,13 @@ const Navbar = () => {
             <NavLink to="/products" className="menu-item">
               Products
             </NavLink>
+            <NavLink to="/products" className="menu-item">
+              Help Desk
+            </NavLink>
           </ul>
         </div>
         <Link to="/" className="font-bold text-3xl">
-          Huntify
+          HUNTIFY
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -64,6 +67,9 @@ const Navbar = () => {
           </NavLink>
           <NavLink to="/products" className="hover:text-primary">
             Products
+          </NavLink>
+          <NavLink to="/helpDesk" className="menu-item">
+              Help Desk
           </NavLink>
         </ul>
       </div>
