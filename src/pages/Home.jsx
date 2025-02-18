@@ -4,6 +4,7 @@ import FeaturedProducts from '../components/FeaturedProducts';
 import TrendingProducts from '../components/TrendingProducts';
 import CouponsCarousel from '../components/CouponsCarousel';
 import NewsLetter from '../components/NewsLetter';
+import Reviews from '../components/Reviews';
 
 const Home = () => {
   return (
@@ -24,6 +25,14 @@ const Home = () => {
       <div className='max-w-7xl mx-auto'>
         <CouponsCarousel></CouponsCarousel>
       </div>
+
+
+
+      <div>
+        <Reviews></Reviews>
+      </div>
+
+
 
 
       <div className='max-w-7xl mx-auto'>
