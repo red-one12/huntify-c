@@ -3,6 +3,7 @@ import Banner from '../components/Banner';
 import FeaturedProducts from '../components/FeaturedProducts';
 import TrendingProducts from '../components/TrendingProducts';
 import CouponsCarousel from '../components/CouponsCarousel';
+import NewsLetter from '../components/NewsLetter';
 
 const Home = () => {
   return (
@@ -22,6 +23,11 @@ const Home = () => {
 
       <div className='max-w-7xl mx-auto'>
         <CouponsCarousel></CouponsCarousel>
+      </div>
+
+
+      <div className='max-w-7xl mx-auto'>
+        <NewsLetter></NewsLetter>
       </div>
     </div>
   );
