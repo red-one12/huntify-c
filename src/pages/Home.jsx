@@ -5,6 +5,7 @@ import TrendingProducts from '../components/TrendingProducts';
 import CouponsCarousel from '../components/CouponsCarousel';
 import NewsLetter from '../components/NewsLetter';
 import Reviews from '../components/Reviews';
+import FAQs from '../components/FAQs';
 
 const Home = () => {
   return (
@@ -32,6 +33,9 @@ const Home = () => {
         <Reviews></Reviews>
       </div>
 
+      <div className='max-w-7xl mx-auto'>
+        <FAQs></FAQs>
+      </div>
 
 
 
