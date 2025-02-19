@@ -55,8 +55,8 @@ const UserMyProfile = () => {
   };
 
   return (
-    <div className="">
-      <div className="flex flex-col items-center">
+    <div className="pt-10">
+      <div className="flex flex-col">
         {user ? (
           <>
             {/* User Avatar */}
@@ -70,7 +70,7 @@ const UserMyProfile = () => {
             </div>
 
             <div>
-              <h1 className="text-5xl font-bold">Welcome Back!</h1>
+              <h1 className="text-5xl text-blue-600 font-bold">Welcome Back!</h1>
 
               <h1 className="text-2xl font-bold mb-2">
                 {user.displayName || "N/A"}
@@ -78,10 +78,13 @@ const UserMyProfile = () => {
             </div>
             </div>
 
-            <p className="text-gray-600 mb-4">{user.email || "N/A"}</p>
+            <p className="text-gray-600 mb-4">Email: <span className="font-bold">{user.email || "N/A"}</span></p>
+            <p className="text-gray-600 mb-4">Phone Number: <span className="font-bold">+8801703344405</span></p>
+
+
 
             {isSubscribed ? (
-              <div className="bg-green-100 text-green-700 px-4 py-2 rounded-md mt-4">
+              <div className="bg-green-100 text-green-700 w-[350px] px-4 py-2 rounded-md mt-4">
                 <p className="text-lg font-semibold">
                   Membership Status: Verified
                 </p>
