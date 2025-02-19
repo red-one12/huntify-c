@@ -35,11 +35,11 @@ const UserMyProfile = () => {
       })
       .then((response) => {
         setIsSubscribed(true);
-        
+
         Swal.fire({
           title: "Subscription successful! Thank you for subscribing!",
           icon: "success",
-          draggable: true
+          draggable: true,
         });
         closeModal();
       })
@@ -55,22 +55,28 @@ const UserMyProfile = () => {
   };
 
   return (
-    <div className="my-profile p-8 max-w-lg mx-auto bg-white shadow-2xl rounded-lg">
+    <div className="">
       <div className="flex flex-col items-center">
         {user ? (
           <>
             {/* User Avatar */}
+            <div className="flex justify-start items-center gap-5">
             <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-300 mb-4">
               <img
-                src={user.photoURL || "https://via.placeholder.com/150"}
+                src={user.photoURL}
                 alt={user.displayName || "User"}
                 className="object-cover w-full h-full"
               />
             </div>
 
-            <h1 className="text-2xl font-bold mb-2">
-              {user.displayName || "N/A"}
-            </h1>
+            <div>
+              <h1 className="text-5xl font-bold">Welcome Back!</h1>
+
+              <h1 className="text-2xl font-bold mb-2">
+                {user.displayName || "N/A"}
+              </h1>
+            </div>
+            </div>
 
             <p className="text-gray-600 mb-4">{user.email || "N/A"}</p>
 

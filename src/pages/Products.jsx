@@ -9,10 +9,11 @@ const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(6); // Number of products per page
   const [searchTerm, setSearchTerm] = useState(""); // For search functionality
+  const [sortOrder, setSortOrder] = useState("desc"); // Sorting order state
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Fetch products based on search term and pagination
+  // Fetch products based on search term
   useEffect(() => {
     axios
       .get(`https://huntify-server.vercel.app/products?search=${searchTerm}`)
@@ -25,17 +26,15 @@ const Products = () => {
       });
   }, [searchTerm]);
 
+  // Handle upvoting
   const handleUpvote = (product) => {
     if (!user) {
       navigate("/signin");
     } else if (user.email !== product.ownerMail) {
       axios
-        .post(
-          `https://huntify-server.vercel.app/products/vote/${product.name}`,
-          {
-            userEmail: user.email,
-          }
-        )
+        .post(`https://huntify-server.vercel.app/products/vote/${product.name}`, {
+          userEmail: user.email,
+        })
         .then(() => {
           setProducts((prevProducts) =>
             prevProducts.map((p) =>
@@ -49,9 +48,15 @@ const Products = () => {
     }
   };
 
-  const totalPages = Math.ceil(products.length / productsPerPage);
+  // Sort products by votes
+  const sortedProducts = [...products].sort((a, b) => {
+    return sortOrder === "asc" ? a.votes - b.votes : b.votes - a.votes;
+  });
+
+  // Pagination logic
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const startIndex = (currentPage - 1) * productsPerPage;
-  const currentProducts = products.slice(
+  const currentProducts = sortedProducts.slice(
     startIndex,
     startIndex + productsPerPage
   );
@@ -61,19 +66,26 @@ const Products = () => {
   };
 
   return (
-    <div className="featured-products my-10 max-w-7xl mx-auto">
-      {/* Search Bar */}
-      <div className="mb-6 flex justify-center">
+    <div className="featured-products my-28 max-w-7xl mx-auto">
+      
+      <div className="mb-6 flex flex-col sm:flex-row justify-center gap-5 items-center">
         <input
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search products by tags..."
-          className="input input-bordered w-full max-w-md"
+          className="input input-bordered w-full sm:w-96"
         />
+
+        <button
+          className="btn bg-blue-600 text-white mt-4 sm:mt-0"
+          onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+        >
+          Sort by Votes: {sortOrder === "asc" ? "Ascending" : "Descending"}
+        </button>
       </div>
 
-      <h2 className="text-3xl font-bold text-center mb-8">All Products</h2>
+      <h2 className="text-2xl font-bold mb-8">All Products</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {currentProducts.map((product, index) => (
           <div
@@ -107,7 +119,7 @@ const Products = () => {
                 ))}
               </div>
 
-              <div className="mt-4">
+              <div className="mt-4 flex items-center justify-between">
                 <button
                   className={`btn ${
                     user && user.email === product.ownerMail
