@@ -1,3 +1,99 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+/* Default Light Theme Styles */
+body {
+  background-color: white;
+  color: black;
+}
+
+
+html.dark body{
+  background-color: #111827;
+  
+}
+
+html.dark .feature-title{
+  color: white;
+}
+html.dark  .trending-product-title{
+  color: white;
+}
+html.dark  .coupon-title{
+  color: white;
+}
+html.dark  .review-title{
+  color: white;
+}
+html.dark  .why-choose-title{
+  color: white;
+}
+html.dark  .recent-blog-title{
+  color: white;
+}
+html.dark  .newsletter-title{
+  color: white;
+}
+
+
+/* Dark Mode Styles
+html.dark body {
+  background-color: #121212;
+}
+
+html.dark .home {
+  background-color: #1f2937;
+}
+
+html.dark .class-book-category{
+  color: white;
+}
+
+html.dark .class-all-books{
+  background-color: #1f2937;
+}
+
+html.dark .class-all-books-text{
+  color: white;
+}
+
+html.dark .class-book-name{
+  color: white;
+}
+
+
+
+html.dark .class-book-table-view {
+  background-color: #1f2937;
+}
+html.dark .class-add-book {
+  background-color: #1f2937;
+}
+html.dark .class-borrowed-books {
+  background-color: #1f2937;
+}
+html.dark .class-borrowed-book-text{
+  color: white;
+}
+
+
+html.dark .class-help-desk {
+  background-color: #1f2937;
+}
+html.dark .class-update-books {
+  background-color: #1f2937;
+}
+html.dark .class-update-book-text {
+  color: white;
+}
+
+html.dark .class-category-books {
+  background-color: #1f2937;
+}
+
+html.dark .class-book-title-text {
+  color: white;
+} */

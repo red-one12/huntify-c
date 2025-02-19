@@ -31,7 +31,7 @@ const RecentBlogs = () => {
 
   return (
     <div className="max-w-6xl mx-auto my-10 p-6">
-      <h2 className="text-3xl font-bold text-center mb-8">Recent Trending Blogs</h2>
+      <h2 className="recent-blog-title text-4xl font-bold text-center mb-8">Recent Trending Blogs</h2>
       
       <div className="grid md:grid-cols-3 gap-6">
         {blogPosts.map((post, index) => (

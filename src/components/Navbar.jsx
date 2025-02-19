@@ -3,13 +3,15 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"; // Import icons
+import { CiDark, CiLight } from "react-icons/ci";
+import { ThemeContext } from "../provider/ThemeProvider";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
   const navigateToHome = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false); // State for dropdown
-
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const handleLogout = () => {
     logOutUser()
       .then(() => {
@@ -94,6 +96,16 @@ const Navbar = () => {
 
       {/* User Authentication */}
       <div className="navbar-end gap-2">
+      <button
+          onClick={toggleTheme}
+          className="text-2xl md:mr-5 border-none text-white"
+        >
+          {theme === "light" ? (
+            <CiLight />
+          ) : (
+            <CiDark />
+          )}
+        </button>
         {!user ? (
           <>
             <button className="btn btn-primary">

@@ -15,14 +15,14 @@ const CouponsCarousel = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center my-10 space-y-6">
-      <h1 className="text-4xl md:text-5xl font-bold text-center">
+    <div className="flex flex-col items-center my-10 space-y-6 px-2">
+      <h1 className="coupon-title text-4xl md:text-5xl font-bold text-center">
         GET YOUR
         <br />
         FAV <span className="text-blue-600">COUPONS</span> HERE...
       </h1>
 
-      <div className="carousel carousel-center w-4/5 rounded-box p-4 space-x-4">
+      <div className="w-full carousel carousel-center rounded-box p-4 space-x-4">
         {coupons.map((coupon) => (
           <div
             key={coupon._id}

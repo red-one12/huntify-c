@@ -23,10 +23,10 @@ const NewsLetter = () => {
       </motion.div>
 
       <div className="w-2/3">
-      <h2 className="text-xl md:text-3xl font-bold text-gray-800 mb-4">
+      <h2 className="newsletter-title text-xl md:text-3xl font-bold text-gray-800 mb-4">
         Subscribe to our <br /><span className="text-blue-600 text-3xl md:text-5xl">Newsletter</span>
       </h2>
-      <p className="text-gray-600 mb-6">
+      <p className="newsletter-title text-gray-600 mb-6">
         Stay updated with the latest tech trends and exclusive insights!
       </p>
 
