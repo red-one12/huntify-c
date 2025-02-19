@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { SlLike } from "react-icons/sl";
+import { TbListDetails } from "react-icons/tb";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -32,9 +33,12 @@ const Products = () => {
       navigate("/signin");
     } else if (user.email !== product.ownerMail) {
       axios
-        .post(`https://huntify-server.vercel.app/products/vote/${product.name}`, {
-          userEmail: user.email,
-        })
+        .post(
+          `https://huntify-server.vercel.app/products/vote/${product.name}`,
+          {
+            userEmail: user.email,
+          }
+        )
         .then(() => {
           setProducts((prevProducts) =>
             prevProducts.map((p) =>
@@ -48,7 +52,6 @@ const Products = () => {
     }
   };
 
-  // Sort products by votes
   const sortedProducts = [...products].sort((a, b) => {
     return sortOrder === "asc" ? a.votes - b.votes : b.votes - a.votes;
   });
@@ -66,24 +69,24 @@ const Products = () => {
   };
 
   return (
-    <div className="featured-products my-28 max-w-7xl mx-auto">
-      
-      <div className="mb-6 flex flex-col sm:flex-row justify-center gap-5 items-center">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search products by tags..."
-          className="input input-bordered w-full sm:w-96"
-        />
+    <div className="featured-products my-28 max-w-7xl mx-auto px-5">
+      <div className="mb-6 flex flex-col sm:flex-row w-full max-w-2xl mx-auto gap-4 items-center">
+  <input
+    type="text"
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    placeholder="Search products by tags..."
+    className="input input-bordered w-full sm:flex-1"
+  />
 
-        <button
-          className="btn bg-blue-600 text-white mt-4 sm:mt-0"
-          onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
-        >
-          Sort by Votes: {sortOrder === "asc" ? "Ascending" : "Descending"}
-        </button>
-      </div>
+  <button
+    className="btn bg-blue-600 text-white w-full sm:w-auto"
+    onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+  >
+    Sort by Votes: {sortOrder === "asc" ? "Ascending" : "Descending"}
+  </button>
+</div>
+
 
       <h2 className="text-2xl font-bold mb-8">All Products</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -133,6 +136,16 @@ const Products = () => {
                     <SlLike />
                   </span>
                   {product.votes || 0}
+                </button>
+
+                <button className="btn bg-green-300">
+                  <Link
+                    to={`/productDetails/${product._id}`}
+                    className="flex justify-center items-center gap-2 text-sm font-semibold"
+                  >
+                    <TbListDetails />
+                    Details
+                  </Link>
                 </button>
               </div>
             </div>
