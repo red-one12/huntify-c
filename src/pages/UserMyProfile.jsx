@@ -72,14 +72,14 @@ const UserMyProfile = () => {
             <div>
               <h1 className="text-5xl text-blue-600 font-bold">Welcome Back!</h1>
 
-              <h1 className="text-2xl font-bold mb-2">
+              <h1 className="text-light text-2xl font-bold mb-2">
                 {user.displayName || "N/A"}
               </h1>
             </div>
             </div>
 
-            <p className="text-gray-600 mb-4">Email: <span className="font-bold">{user.email || "N/A"}</span></p>
-            <p className="text-gray-600 mb-4">Phone Number: <span className="font-bold">+8801703344405</span></p>
+            <p className="text-light text-gray-600 mb-4">Email: <span className="font-bold">{user.email || "N/A"}</span></p>
+            <p className="text-light text-gray-600 mb-4">Phone Number: <span className="font-bold">+8801703344405</span></p>
 
 
 

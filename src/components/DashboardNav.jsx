@@ -31,7 +31,7 @@ const DashboardNav = () => {
         <img src={user?.photoURL} className="w-10 h-10 rounded-full" alt="" />
         <div>
           <p className="font-bold">{user?.displayName}</p>
-          <p className="text-sm text-gray-800">{userRole?.toUpperCase()}</p>
+          <p className="text-light text-sm text-gray-800">{userRole?.toUpperCase()}</p>
         </div>
       </div>
       <Link to="/dashboard/dashboard" className={getActiveClass("/dashboard/dashboard")}>Dashboard</Link>
@@ -56,7 +56,7 @@ const DashboardNav = () => {
         </div>
       )}
 
-      <div className="w-full h-[1px] bg-black"></div>
+      <div className="bg-light w-full h-[1px] bg-black"></div>
       <Link to="/" className={getActiveClass("/")}>Home</Link>
       <Link to="/products" className={getActiveClass("/products")}>Products</Link>
     </div>

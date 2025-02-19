@@ -64,13 +64,13 @@ const ManageCoupon = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1 className="text-3xl font-bold">Manage Coupons</h1>
+      <h1 className="text-light text-4xl font-bold">Manage Coupons</h1>
 
       {/* Add Coupon Form */}
       <form onSubmit={handleAddCoupon} style={{ marginBottom: "20px" }}>
-        <h2 className="text-lg font-bold">Add a New Coupon</h2>
+        <h2 className="text-lg font-bold text-light">Add a New Coupon</h2>
         <div style={{ marginBottom: "10px" }}>
-          <label>Coupon Code:</label>
+          <label className="text-light">Coupon Code:</label>
           <input
             className="border"
             type="text"
@@ -82,7 +82,7 @@ const ManageCoupon = () => {
           />
         </div>
         <div style={{ marginBottom: "10px" }}>
-          <label>Expiry Date:</label>
+          <label className="text-light">Expiry Date:</label>
           <input
             className="border"
             type="date"
@@ -94,7 +94,7 @@ const ManageCoupon = () => {
           />
         </div>
         <div style={{ marginBottom: "10px" }}>
-          <label>Description:</label>
+          <label className="text-light">Description:</label>
           <textarea
             className="border"
             name="description"
@@ -105,7 +105,7 @@ const ManageCoupon = () => {
           />
         </div>
         <div style={{ marginBottom: "10px" }}>
-          <label>Discount Amount:</label>
+          <label className="text-light">Discount Amount:</label>
           <input
             className="border"
             type="number"
@@ -154,7 +154,7 @@ const ManageCoupon = () => {
           </thead>
           <tbody>
             {coupons.map((coupon) => (
-              <tr key={coupon._id}>
+              <tr key={coupon._id} className="text-light">
                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>
                   {coupon.couponCode}
                 </td>

@@ -37,6 +37,16 @@ html.dark  .recent-blog-title{
 html.dark  .newsletter-title{
   color: white;
 }
+html.dark  .text-light{
+  color: white;
+}
+html.dark  .bg-light{
+  background: white;
+}
+html.dark  .dashboard-left-bg{
+  background: #081020;
+  color: white;
+}
 
 
 /* Dark Mode Styles

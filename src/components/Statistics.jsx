@@ -14,7 +14,7 @@ const Statistics = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Replace these URLs with your actual API endpoints
+      
         const productsResponse = await axios.get(
           "https://huntify-server.vercel.app/products"
         );
@@ -55,7 +55,7 @@ const Statistics = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-xl font-semibold mb-4">Admin Statistics</h2>
+      <h2 className="text-light text-4xl font-semibold mb-4">Admin Statistics</h2>
       <div className="max-w-lg mx-auto">
         {stats.totalProducts > 0 ||
         stats.totalUsers > 0 ||
@@ -103,19 +103,19 @@ const Statistics = () => {
             {/* Segment Section */}
             <div className="mt-6 grid grid-cols-1 gap-4 text-sm text-gray-800">
               <div className="flex justify-between items-center border-b pb-2">
-                <span className="font-semibold">Total Products:</span>
+                <span className="font-semibold text-light">Total Products:</span>
                 <span className="text-blue-500 font-semibold">
                   {stats.totalProducts}
                 </span>
               </div>
               <div className="flex justify-between items-center border-b pb-2">
-                <span className="font-semibold">Total Reviews:</span>
+                <span className="font-semibold text-light">Total Reviews:</span>
                 <span className="text-orange-500 font-semibold">
                   {stats.totalReviews}
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="font-semibold">Total Users:</span>
+                <span className="font-semibold text-light">Total Users:</span>
                 <span className="text-purple-500 font-semibold">
                   {stats.totalUsers}
                 </span>

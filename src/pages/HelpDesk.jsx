@@ -18,7 +18,7 @@ const HelpDesk = () => {
 
   return (
     <div className="py-28 px-4">
-      <h2 className="text-center text-4xl font-bold text-gray-800">
+      <h2 className="text-light text-center text-4xl font-bold text-gray-800">
         Help <span className="text-blue-600">Desk</span>
       </h2>
 

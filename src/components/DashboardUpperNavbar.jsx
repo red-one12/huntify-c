@@ -22,7 +22,7 @@ const DashboardUpperNavbar = () => {
   };
 
   return (
-    <div className="flex justify-end items-center gap-5">
+    <div className="text-light flex justify-end items-center gap-5">
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal gap-10 px-1 font-bold">
           <NavLink to="/" className="hover:text-primary">

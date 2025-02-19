@@ -68,10 +68,10 @@ const UserAddProduct = () => {
 
   return (
     <div className="w-full mt-10">
-      <h2 className="text-2xl font-bold mb-4 text-center">Add New Product</h2>
+      <h2 className="text-light text-4xl font-bold mb-4 text-center">Add New Product</h2>
       <form onSubmit={handleSubmit}>
         {/* Product Name */}
-        <label className="block text-gray-700 font-semibold mb-2">
+        <label className="block text-light text-gray-700 font-semibold mb-2">
           Product Name <span className="text-red-500">*</span>
         </label>
         <input
@@ -84,7 +84,7 @@ const UserAddProduct = () => {
         />
 
         {/* Product Image */}
-        <label className="block text-gray-700 font-semibold mb-2">
+        <label className="block text-light text-gray-700 font-semibold mb-2">
           Product Image URL <span className="text-red-500">*</span>
         </label>
         <input
@@ -97,7 +97,7 @@ const UserAddProduct = () => {
         />
 
         {/* Description */}
-        <label className="block text-gray-700 font-semibold mb-2">
+        <label className="block text-light text-gray-700 font-semibold mb-2">
           Description <span className="text-red-500">*</span>
         </label>
         <textarea
@@ -110,7 +110,7 @@ const UserAddProduct = () => {
 
         {/* Owner Info */}
         <div className="mb-4">
-          <h4 className="font-semibold text-gray-700">Owner Info</h4>
+          <h4 className="font-semibold text-light text-gray-700">Owner Info</h4>
           <div className="p-3 border rounded bg-gray-100">
             <p>
               <strong>Name:</strong> {user.displayName || "N/A"}
@@ -122,7 +122,7 @@ const UserAddProduct = () => {
         </div>
 
         {/* Tags */}
-        <label className="block text-gray-700 font-semibold mb-2">Tags</label>
+        <label className="block text-light text-gray-700 font-semibold mb-2">Tags</label>
         <ReactTags
           tags={tags}
           handleDelete={handleDelete}
@@ -137,7 +137,7 @@ const UserAddProduct = () => {
         />
 
         {/* External Link */}
-        <label className="block text-gray-700 font-semibold mb-2">
+        <label className="block text-light text-gray-700 font-semibold mb-2">
           External Link
         </label>
         <input

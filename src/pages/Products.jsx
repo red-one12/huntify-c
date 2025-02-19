@@ -69,7 +69,7 @@ const Products = () => {
   };
 
   return (
-    <div className="featured-products my-28 max-w-7xl mx-auto px-5">
+    <div className="featured-products py-28 max-w-7xl mx-auto px-5">
       <div className="mb-6 flex flex-col sm:flex-row w-full max-w-2xl mx-auto gap-4 items-center">
   <input
     type="text"
@@ -88,7 +88,7 @@ const Products = () => {
 </div>
 
 
-      <h2 className="text-2xl font-bold mb-8">All Products</h2>
+      <h2 className="text-light text-2xl font-bold mb-8">All Products</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {currentProducts.map((product, index) => (
           <div

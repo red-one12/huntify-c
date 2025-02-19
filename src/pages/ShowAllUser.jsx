@@ -44,7 +44,7 @@ const ShowAllUser = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">All Users</h1>
+      <h1 className="text-light text-4xl font-bold mb-6">All Users</h1>
       {huntifyUsers.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="table-auto w-full text-left border-collapse border border-gray-300">
@@ -57,7 +57,7 @@ const ShowAllUser = () => {
             </thead>
             <tbody>
               {huntifyUsers.map((user) => (
-                <tr key={user._id} className="hover:bg-gray-50">
+                <tr key={user._id} className="hover:bg-gray-50 text-light">
                   <td className="border border-gray-300 px-4 py-2">
                     {user.name}
                   </td>
@@ -66,7 +66,7 @@ const ShowAllUser = () => {
                   </td>
                   <td className="border border-gray-300 px-4 py-2 space-x-2">
                     <button
-                      className={`btn btn-sm ${
+                      className={`btn text-light btn-sm ${
                         user.role === "Moderator"
                           ? "btn-disabled"
                           : "btn-outline"
