@@ -30,7 +30,7 @@ const benefits = [
 
 const WhyChooseUs = () => {
   return (
-    <div className="my-12">
+    <div className="my-12 px-5">
       <h2 className="text-3xl font-bold text-center mb-8">Why Choose Us?</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {benefits.map((benefit, index) => (

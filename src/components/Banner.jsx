@@ -11,7 +11,7 @@ const Banner = () => {
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-neutral-content text-center">
         <div className="">
-          <h1 className="mb-5 text-2xl font-bold">
+          <h1 className="mb-5 md:text-2xl font-bold">
             <TypeAnimation
               sequence={[
                 "Discover Amazing Tech Products 🚀",
