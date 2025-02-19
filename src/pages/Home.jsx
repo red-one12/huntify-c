@@ -6,6 +6,8 @@ import CouponsCarousel from '../components/CouponsCarousel';
 import NewsLetter from '../components/NewsLetter';
 import Reviews from '../components/Reviews';
 import FAQs from '../components/FAQs';
+import RecentBlogs from '../components/RecentBlogs';
+import WhyChooseUs from '../components/WhyChooseUs';
 
 const Home = () => {
   return (
@@ -34,14 +36,29 @@ const Home = () => {
       </div>
 
       <div className='max-w-7xl mx-auto'>
+        <WhyChooseUs></WhyChooseUs>
+      </div>
+
+
+      <div className='max-w-7xl mx-auto'>
+        <RecentBlogs></RecentBlogs>
+      </div>
+
+      <div className='max-w-7xl mx-auto'>
         <FAQs></FAQs>
       </div>
+
+
 
 
 
       <div className='max-w-7xl mx-auto'>
         <NewsLetter></NewsLetter>
       </div>
+
+
+
+      
     </div>
   );
 };
