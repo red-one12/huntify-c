@@ -9,7 +9,7 @@ const Footer = () => {
       
         <div className="mb-8">
           <div className="flex items-center">
-            <h2 className="text-2xl font-bold text-yellow-500">Huntify</h2>
+            <h2 className="text-2xl font-bold text-blue-600">HUNTIFY</h2>
           </div>
         </div>
 

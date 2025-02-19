@@ -27,7 +27,7 @@ const ReportedContents = () => {
 
   return (
     <div>
-      <h2>Reported Products</h2>
+      <h2 className="text-4xl text-light py-5">Reported Products</h2>
       {reportedProducts.length > 0 ? (
         <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
           {reportedProducts.map((product) => (

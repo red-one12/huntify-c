@@ -1,19 +1,65 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import helpLottie from "../assets/Lottie/help lottie.json";
 import Lottie from "lottie-react";
+import { AuthContext } from "../provider/AuthProvider";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const HelpDesk = () => {
-  const [formData, setFormData] = useState({ email: "", problem: "" });
+  const { user } = useContext(AuthContext);
 
+  // State for form
+  const [formData, setFormData] = useState({ email: user?.email || "", problem: "" });
+
+  // Handle input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitted Data:", formData);
-    setFormData({ email: "", problem: "" });
+
+    const { email, problem } = formData;
+
+    // Frontend validation
+    if (!email.trim() || !problem.trim()) {
+      Swal.fire({
+        title: "Error",
+        text: "Email and Problem description are required!",
+        icon: "warning",
+      });
+      return;
+    }
+
+    const helpInfo = { email, problem };
+
+    axios
+      .post("https://huntify-server.vercel.app/helps", helpInfo)
+      .then((response) => {
+        if (response.data?.acknowledged) {
+          Swal.fire({
+            title: "Success",
+            text: "Your issue has been submitted!",
+            icon: "success",
+          });
+          setFormData({ email: user?.email || "", problem: "" }); // Reset form
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: "Failed to submit. Try again!",
+            icon: "error",
+          });
+        }
+      })
+      .catch(() => {
+        Swal.fire({
+          title: "Error",
+          text: "Something went wrong. Please try again!",
+          icon: "error",
+        });
+      });
   };
 
   return (
@@ -40,6 +86,7 @@ const HelpDesk = () => {
             whileHover={{ scale: 1.02 }}
           >
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Email Input */}
               <div>
                 <label className="block text-sm font-medium text-gray-600">
                   Email
@@ -55,6 +102,8 @@ const HelpDesk = () => {
                   required
                 />
               </div>
+
+              {/* Problem Textarea */}
               <div>
                 <label className="block text-sm font-medium text-gray-600">
                   Your Problem
@@ -70,6 +119,8 @@ const HelpDesk = () => {
                   required
                 ></motion.textarea>
               </div>
+
+              {/* Submit Button */}
               <motion.button
                 type="submit"
                 className="w-full rounded-lg bg-blue-500 py-2 text-white hover:bg-blue-600"

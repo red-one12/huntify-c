@@ -15,36 +15,36 @@ const Home = () => {
       <Banner></Banner>
 
 
-      <div className='max-w-7xl mx-auto'>
+      <div className='max-w-7xl mx-auto pt-20'>
       <FeaturedProducts></FeaturedProducts>
       </div>
 
 
-      <div className='max-w-7xl mx-auto'>
+      <div className='max-w-7xl mx-auto pt-20'>
       <TrendingProducts></TrendingProducts>
       </div>
 
 
-      <div className='max-w-7xl mx-auto'>
+      <div className='max-w-7xl mx-auto pt-20'>
         <CouponsCarousel></CouponsCarousel>
       </div>
 
 
 
-      <div>
+      <div className='pt-20'>
         <Reviews></Reviews>
       </div>
 
-      <div className='max-w-7xl mx-auto'>
+      <div className='max-w-7xl mx-auto pt-20'>
         <WhyChooseUs></WhyChooseUs>
       </div>
 
 
-      <div className='max-w-7xl mx-auto'>
+      <div className='max-w-7xl mx-auto pt-20'>
         <RecentBlogs></RecentBlogs>
       </div>
 
-      <div className='max-w-7xl mx-auto'>
+      <div className='max-w-7xl mx-auto pt-20'>
         <FAQs></FAQs>
       </div>
 
@@ -52,7 +52,7 @@ const Home = () => {
 
 
 
-      <div className='max-w-7xl mx-auto'>
+      <div className='max-w-7xl mx-auto pt-20'>
         <NewsLetter></NewsLetter>
       </div>
 

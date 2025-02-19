@@ -70,7 +70,7 @@ const ReviewQueue = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6">Product Review Queue</h2>
+      <h2 className="text-light text-3xl font-bold mb-6">Product Review Queue</h2>
       <div className="overflow-x-auto">
         <table className="table-auto w-full text-left border-collapse border border-gray-300">
           <thead>
@@ -81,19 +81,19 @@ const ReviewQueue = () => {
           </thead>
           <tbody>
             {products.map((product) => (
-              <tr key={product._id} className="hover:bg-gray-50">
+              <tr key={product._id} className="text-light">
                 <td className="border border-gray-300 px-4 py-2">
                   {product.name}
                 </td>
                 <td className="border border-gray-300 px-4 py-2 space-x-2">
                   <Link
                     to={`/productDetails/${product._id}`}
-                    className="btn btn-sm btn-outline"
+                    className="btn btn-sm btn-outline text-light"
                   >
                     View Details
                   </Link>
                   <button
-                    className="btn btn-sm btn-success"
+                    className="btn btn-sm btn-success text-light"
                     onClick={() => handleMakeFeatured(product._id)}
                     disabled={product.isFeatured} // Disable if already featured
                   >
