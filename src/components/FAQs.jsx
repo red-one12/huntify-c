@@ -1,9 +1,10 @@
+import faqImage from '../assets/images/faq img.png'
 const FAQs = () => {
   return (
-    <div className="max-w-4xl mx-auto my-10 p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-3xl font-bold text-center mb-6">Frequently Asked Questions</h2>
+    <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <img className='w-1/3' src={faqImage} alt="" />
 
-      <div className="space-y-4">
+      <div className="space-y-2 w-2/3">
         <div className="collapse collapse-plus bg-base-200">
           <input type="radio" name="faq-accordion" defaultChecked />
           <div className="collapse-title text-lg font-semibold">What is this platform about?</div>
@@ -30,9 +31,9 @@ const FAQs = () => {
 
         <div className="collapse collapse-plus bg-base-200">
           <input type="radio" name="faq-accordion" />
-          <div className="collapse-title text-lg font-semibold">Can I upvote or downvote products?</div>
+          <div className="collapse-title text-lg font-semibold">Can I upvote products?</div>
           <div className="collapse-content">
-            <p>Yes, users can upvote or downvote products based on their preference.</p>
+            <p>Yes, users can upvote products based on their preference.</p>
           </div>
         </div>
 
