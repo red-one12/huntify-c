@@ -67,7 +67,7 @@ const UserAddProduct = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto bg-white shadow-md rounded p-6 mt-10">
+    <div className="w-full mt-10">
       <h2 className="text-2xl font-bold mb-4 text-center">Add New Product</h2>
       <form onSubmit={handleSubmit}>
         {/* Product Name */}

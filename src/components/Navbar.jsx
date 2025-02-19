@@ -116,8 +116,8 @@ const Navbar = () => {
               <li>
                 <span className="font-semibold text-black">{user.displayName}</span>
               </li>
-              <li>
-                <NavLink to="/dashboard/dashboard" className={`menu-item text-black ${getActiveClass("/dashboard/dashboard")}`}>
+              <li className="text-black">
+                <NavLink to="/dashboard/dashboard" className={`menu-item text-black`}>
                   Dashboard
                 </NavLink>
               </li>
